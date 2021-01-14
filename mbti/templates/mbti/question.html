@@ -1,2 +1,11 @@
 <h1> question page </h1>
-<a href="{% url 'result' %}">Result</a>
+<form action="./result/" method="POST">{% csrf_token %}
+    <div class="input-group"> 
+        <input id="todoContent" name="OrderTime" type="button" class="form-control" placeholder="주문 시각">
+        <input id="todoContent" name="OrderMenu" type="button" class="form-control" placeholder="메뉴 명">
+        <input id="todoContent" name="OrderNum" type="button" class="form-control" placeholder="주문 갯수">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">save</button>
+        </span>
+    </div>
+</form>

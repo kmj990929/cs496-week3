@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("mbti별 아티스트 추천!")
+    return render(request, 'mbti/index.html')
 
 def printQuestion(request):
     return render(request, 'mbti/question.html')
