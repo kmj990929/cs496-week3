@@ -1,1 +1,5 @@
 <h1> Result Page!</h1>
+<p>{{mbti}}</p>
+<form action="/mbti">{% csrf_token %}
+    <button type="submit">다시 하기</button>
+</form>

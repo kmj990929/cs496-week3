@@ -1,9 +1,21 @@
 <h1> question page </h1>
-<form action="./result/" method="POST">{% csrf_token %}
+
+<h3> {{question}} </h3>
+
+<form action="/mbti/question/{{number}}" method="GET">{% csrf_token %}
     <div class="input-group"> 
-        <input id="todoContent" name="OrderTime" type="button" class="form-control" placeholder="주문 시각">
-        <input id="todoContent" name="OrderMenu" type="button" class="form-control" placeholder="메뉴 명">
-        <input id="todoContent" name="OrderNum" type="button" class="form-control" placeholder="주문 갯수">
+
+        <input type="radio" name="answer" id = "choice1" value="1">
+        <label for="choice1-1">매우 그렇다</label><br>
+        <input type="radio" name="answer" id = "choice2" value="2">
+        <label for="choice1-2">그렇다</label><br>
+        <input type="radio" name="answer" id = "choice3" value="3">
+        <label for="choice1-2">보통이다</label><br>
+        <input type="radio" name="answer" id = "choice4" value="4">
+        <label for="choice1-2">그렇지 않다</label><br>
+        <input type="radio" name="answer" id = "choice5" value="5">
+        <label for="choice1-2">매우 그렇지 않다</label><br>
+
         <span class="input-group-btn">
             <button class="btn btn-default" type="submit">save</button>
         </span>

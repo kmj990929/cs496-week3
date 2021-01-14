@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('question/', views.printQuestion, name="question"),
+    path('question/<quesNum>/', views.printQuestion, name="question"),
     path('result/', views.printResult, name="result"),
 ]
