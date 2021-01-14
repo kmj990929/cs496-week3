@@ -9,3 +9,10 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("mbti별 아티스트 추천!")
+
+def printQuestion(request):
+    return render(request, 'mbti/question.html')
+
+def printResult(request):
+    #answer = request.GET['answer']
+    return render(request, 'mbti/result.html')
