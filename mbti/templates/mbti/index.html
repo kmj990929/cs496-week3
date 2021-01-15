@@ -8,11 +8,28 @@
           background-repeat : no-repeat;
           background-size : cover;
       }
+
+      .custom-btn {
+          font-size: 100px;
+          color : white;
+          padding-left : 70px;
+          padding-right : 70px;
+          padding-top : 30px;
+          padding-bottom : 30px;
+          font-weight: bold;
+          text-align : center;
+          background-color: rgba( 255, 255, 255, 0 );
+          border : 0;
+          outline : 0;
+          position: absolute;
+          top : 600px;
+          left : 700px;
+      }
     </style>
   </head>
   <body>
     <form action="./question/1" method="GET">{% csrf_token %}
-        <button type="submit">start</button>
+        <button type="submit" class="custom-btn">START</button>
     </form>
   </body>
 </html>

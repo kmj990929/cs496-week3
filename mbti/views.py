@@ -7,6 +7,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from .models import *
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
 
 
 def index(request):
@@ -48,9 +53,11 @@ def printResult(request):
     answer_list = []
     answer_all = Answer.objects.all()
     mbti = calculateMBTI(answer_all)
+    artist = matchArtist(mbti)
+    songs = matchSongs(artist)
     answer_all.delete()
 
-    content = {'mbti': mbti}
+    content = {'match_artist': artist, 'songs' : songs}
     return render(request, 'mbti/result.html', content)
 
 
@@ -83,3 +90,36 @@ def calculateMBTI(answer_list):
         mbti += "J"
 
     return mbti
+
+def matchArtist(mbti):
+    if (mbti == "INTP") :
+        return "iu"
+    else :
+        return "AKMU"
+
+def matchSongs(artist):
+    song_list = []
+
+    #chrome 띄우지 않고 백그라운드에서 selenium 크롤링
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('lang=ko_KR')
+
+    driver = webdriver.Chrome('C:/Users/q/Desktop/chromedriver.exe', chrome_options=chrome_options)
+    url = "https://www.youtube.com/results?search_query="
+    url += artist+"+mv"
+    driver.get(url)
+
+    page = driver.page_source
+    driver.quit()
+    soup = BeautifulSoup(page, 'lxml')
+    all_title = soup.find_all('a','yt-simple-endpoint style-scope ytd-video-renderer')
+    for i in range(4):
+        song_url = "https://www.youtube.com/embed/"
+        idx = all_title[i].attrs['href'].index("=")
+        song_url += all_title[i].attrs['href'][idx+1:]
+        song_list.append(song_url)
+    return song_list
+
+    
