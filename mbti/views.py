@@ -10,7 +10,7 @@ from .models import *
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from . import artist
 
 
 
@@ -25,7 +25,7 @@ def printQuestion(request, quesNum):
 
     if (num > 10):
         answer = request.GET['answer']
-        new_answer = Answer(question_number = num, answer = answer)
+        new_answer = Answer(question_number = num-1, answer = answer)
         new_answer.save()
         return redirect('/mbti/result/')
 
@@ -39,7 +39,7 @@ def printQuestion(request, quesNum):
 
     else:
         answer = request.GET['answer']
-        new_answer = Answer(question_number = num, answer = answer)
+        new_answer = Answer(question_number = num-1, answer = answer)
         new_answer.save()
         ques = question_list[num-1]
         num += 1
@@ -51,9 +51,8 @@ def printQuestion(request, quesNum):
 
 def printResult(request):
     answer_list = []
-    answer_all = Answer.objects.all()
-    mbti = calculateMBTI(answer_all)
-    artist = matchArtist(mbti)
+    artist.questionCalc()
+    print("tlqkf " + str(artist.highSelfEsteem))
     isExistArtist = Artist.objects.filter(artist=artist)
     print(isExistArtist)
     if (len(isExistArtist) == 0) :

@@ -1,3 +1,5 @@
+from .models import *
+
 highSelfEsteem_artist = ["아이유", "박혜원", "스탠딩에그", "장덕철", "이하이",
                 "허각", "거미", "백예린", "임영웅", "벤",
                 "폴킴", "양다일", "기리보이", "악동뮤지션", "폴킴",
@@ -106,6 +108,7 @@ notRealistic_artist = ["임영웅", "규현", "양다일", "방탄소년단", "�
 
 
 
+
 highSelfEsteem = 0
 ideal = 0
 active = 0
@@ -130,7 +133,15 @@ def questionCalc():
     question10()
 
 def question1():
-    answer_1 = Answer.objects.filter(question_num = 1).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_1 = Answer.objects.filter(question_number = 1)[0].answer
     if answer_1 == 1:
         highSelfEsteem -= 3
         ideal += 2
@@ -178,7 +189,15 @@ def question1():
         realistic += 2
 
 def question2():
-    answer_2 = Answer.objects.filter(question_num = 2).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_2 = Answer.objects.filter(question_number = 2)[0].answer
     if answer_2 == 1:
         highSelfEsteem += 0
         ideal -= 5
@@ -226,7 +245,15 @@ def question2():
         realistic -= 2
 
 def question3():
-    answer_3 = Answer.objects.filter(question_num = 3).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_3 = Answer.objects.filter(question_number = 3)[0].answer
     if answer_3 == 1:
         highSelfEsteem += 5
         ideal += 5
@@ -274,7 +301,15 @@ def question3():
         realistic += 4
 
 def question4():
-    answer_4 = Answer.objects.filter(question_num = 4).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_4 = Answer.objects.filter(question_number = 4)[0].answer
     if answer_4 == 1:
         highSelfEsteem += -2
         ideal += 3
@@ -322,7 +357,15 @@ def question4():
         realistic += 2
 
 def question5():
-    answer_5 = Answer.objects.filter(question_num = 5).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_5 = Answer.objects.filter(question_number = 5)[0].answer
     if answer_5 == 1:
         highSelfEsteem += -2
         ideal += 3
@@ -370,7 +413,15 @@ def question5():
         realistic += -3
 
 def question6():
-    answer_6 = Answer.objects.filter(question_num = 6).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_6 = Answer.objects.filter(question_number = 6)[0].answer
     if answer_6 == 1:
         highSelfEsteem += -4
         ideal += -3
@@ -418,7 +469,15 @@ def question6():
         realistic += 4
 
 def question7():
-    answer_7 = Answer.objects.filter(question_num = 7).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_7 = Answer.objects.filter(question_number = 7)[0].answer
     if answer_7 == 1:
         highSelfEsteem += -1
         ideal += -3
@@ -466,7 +525,15 @@ def question7():
         realistic += 2
 
 def question8():
-    answer_8 = Answer.objects.filter(question_num = 8).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_8 = Answer.objects.filter(question_number = 8)[0].answer
     if answer_8 == 1:
         highSelfEsteem += -2
         ideal += 3
@@ -514,7 +581,15 @@ def question8():
         realistic += 3
 
 def question9():
-    answer_9 = Answer.objects.filter(question_num = 9).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_9 = Answer.objects.filter(question_number = 9)[0].answer
     if answer_9 == 1:
         highSelfEsteem += -2
         ideal += 5
@@ -562,7 +637,15 @@ def question9():
         realistic += 2
 
 def question10():
-    answer_10 = Answer.objects.filter(question_num = 10).answer
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    answer_10 = Answer.objects.filter(question_number = 10)[0].answer
     if answer_10 == 1:
         highSelfEsteem += 5
         ideal += -4
