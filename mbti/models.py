@@ -10,6 +10,11 @@ class Answer(models.Model):
     answer = models.IntegerField()
 
 class User(models.Model):
-    userID = models.CharField(max_length=200)
-    userPW = models.CharField(max_length=200)
-    mbti = models.CharField(max_length=200)
+    userID = models.TextField()
+    userPW = models.TextField()
+    mbti = models.TextField()
+
+class Song(models.Model):
+    title = models.TextField()
+    url = models.TextField()
+    thumbnail = models.TextField()

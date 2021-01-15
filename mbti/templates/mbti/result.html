@@ -2,16 +2,19 @@
 <p>{{match_artist}}</p>
 
 <div class="match_song_list">
+    
     <ui class="song_list">
-        {% for song in songs%}
+        {% for song in song_list%}
         <iframe 
             width="640" 
             height="360" 
-            src={{song}}
+            src={{song.url}}
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
         </iframe>
+        <p> {{song.title}} </p>
+        <p><img src={{song.thumbnail}} > </img></p>
         {% endfor %}
     </ul>
 </div>

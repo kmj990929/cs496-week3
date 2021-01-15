@@ -54,10 +54,14 @@ def printResult(request):
     answer_all = Answer.objects.all()
     mbti = calculateMBTI(answer_all)
     artist = matchArtist(mbti)
-    songs = matchSongs(artist)
+    matchSongs(artist)
     answer_all.delete()
 
-    content = {'match_artist': artist, 'songs' : songs}
+    print("4")
+    song_all = Song.objects.all()
+    print("5")
+
+    content = {'match_artist': artist, 'song_list' : song_all}
     return render(request, 'mbti/result.html', content)
 
 
@@ -99,7 +103,6 @@ def matchArtist(mbti):
 
 def matchSongs(artist):
     song_list = []
-
     #chrome 띄우지 않고 백그라운드에서 selenium 크롤링
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('headless')
@@ -114,12 +117,21 @@ def matchSongs(artist):
     page = driver.page_source
     driver.quit()
     soup = BeautifulSoup(page, 'lxml')
-    all_title = soup.find_all('a','yt-simple-endpoint style-scope ytd-video-renderer')
+    all_link = soup.find_all('a','yt-simple-endpoint style-scope ytd-video-renderer')
+    all_thumbnail = soup.find_all('a','yt-simple-endpoint inline-block style-scope ytd-thumbnail')
     for i in range(4):
         song_url = "https://www.youtube.com/embed/"
-        idx = all_title[i].attrs['href'].index("=")
-        song_url += all_title[i].attrs['href'][idx+1:]
-        song_list.append(song_url)
-    return song_list
+        idx = all_link[i].attrs['href'].index("=")
+        song_url += all_link[i].attrs['href'][idx+1:]
+        song_thumbnail = all_thumbnail[i].find('yt-img-shadow').find('img').attrs['src']
+        song_title = all_link[i].attrs['title']
+
+        ### 노래 db에 추가 ###
+        print("1")
+        new_song = Song(url = song_url, title = song_title, thumbnail = song_thumbnail)
+        print("2")
+        new_song.save()
+        print("3")
+
 
     
