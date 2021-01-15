@@ -57,9 +57,7 @@ def printResult(request):
     matchSongs(artist)
     answer_all.delete()
 
-    print("4")
     song_all = Song.objects.all()
-    print("5")
 
     content = {'match_artist': artist, 'song_list' : song_all}
     return render(request, 'mbti/result.html', content)
@@ -127,11 +125,8 @@ def matchSongs(artist):
         song_title = all_link[i].attrs['title']
 
         ### 노래 db에 추가 ###
-        print("1")
         new_song = Song(url = song_url, title = song_title, thumbnail = song_thumbnail)
-        print("2")
         new_song.save()
-        print("3")
 
 
     
