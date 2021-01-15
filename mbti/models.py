@@ -15,6 +15,10 @@ class User(models.Model):
     mbti = models.TextField()
 
 class Song(models.Model):
+    artist = models.TextField()
     title = models.TextField()
     url = models.TextField()
     thumbnail = models.TextField()
+
+class Artist(models.Model):
+    artist = models.TextField()
