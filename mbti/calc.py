@@ -118,16 +118,23 @@ def estimateArtist():
     global extrovert
     global realistic
     personalityList = [highSelfEsteem, ideal, active, patient, comfortable, hardworking, extrovert, realistic, -highSelfEsteem, -ideal, -active, -patient, -comfortable, -hardworking, -extrovert, -realistic]
-
+    
+    print("lsit1", personalityList)
     firstPersonality = personalityList.index(max(personalityList))
     personalityList[firstPersonality] = -999
     secondPersonality = personalityList.index(max(personalityList))
     personalityList[secondPersonality] = -999
     thirdPersonality = personalityList.index(max(personalityList))
     personalityList[thirdPersonality] = -999
+    print("lsit2", personalityList)
 
     personalitySet = set(personalityArtist[firstPersonality]) & set(personalityArtist[secondPersonality]) & set(personalityArtist[thirdPersonality])
     result = list(personalitySet)
+
+
+    print("1st", str(firstPersonality))
+    print("2nd", str(secondPersonality))
+    print("3rd", str(thirdPersonality))
 
     if len(result) != 0:
         return result
@@ -135,6 +142,22 @@ def estimateArtist():
     return ["iu"]
 
 def questionCalc():
+    global highSelfEsteem
+    global ideal
+    global active
+    global patient
+    global comfortable
+    global hardworking
+    global extrovert
+    global realistic
+    highSelfEsteem = 0
+    ideal = 0
+    active = 0
+    patient = 0
+    comfortable = 0
+    hardworking = 0
+    extrovert = 0
+    realistic = 0
     question1()
     question2()
     question3()
