@@ -1,23 +1,37 @@
-<h1> question page </h1>
+<style>
+    @font-face {
+        font-family: 'Jal_Onuel';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    #page {
+        font-family: 'Jal_Onuel';
+    }
+</style>
 
-<h3> {{question}} </h3>
+<div id="page">
+    <h1> question page </h1>
 
-<form action="/mbti/question/{{number}}" method="GET">{% csrf_token %}
-    <div class="input-group"> 
+    <h3> {{question}} </h3>
 
-        <input type="radio" name="answer" id = "choice1" value="1">
-        <label for="choice1-1">매우 그렇다</label><br>
-        <input type="radio" name="answer" id = "choice2" value="2">
-        <label for="choice1-2">그렇다</label><br>
-        <input type="radio" name="answer" id = "choice3" value="3">
-        <label for="choice1-2">보통이다</label><br>
-        <input type="radio" name="answer" id = "choice4" value="4">
-        <label for="choice1-2">그렇지 않다</label><br>
-        <input type="radio" name="answer" id = "choice5" value="5">
-        <label for="choice1-2">매우 그렇지 않다</label><br>
+    <form action="/mbti/question/{{number}}" method="GET">{% csrf_token %}
+        <div class="input-group"> 
 
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">save</button>
-        </span>
-    </div>
-</form>
+            <input type="radio" name="answer" id = "choice1" value="1">
+            <label for="choice1-1">매우 그렇다</label><br>
+            <input type="radio" name="answer" id = "choice2" value="2">
+            <label for="choice1-2">그렇다</label><br>
+            <input type="radio" name="answer" id = "choice3" value="3">
+            <label for="choice1-2">보통이다</label><br>
+            <input type="radio" name="answer" id = "choice4" value="4">
+            <label for="choice1-2">그렇지 않다</label><br>
+            <input type="radio" name="answer" id = "choice5" value="5">
+            <label for="choice1-2">매우 그렇지 않다</label><br>
+
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">save</button>
+            </span>
+        </div>
+    </form>
+</div>

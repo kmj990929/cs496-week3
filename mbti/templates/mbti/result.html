@@ -1,48 +1,108 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
 <head>
-    <h1> Result Page!</h1>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <style>
+        #match_artist_list {
+            display: flex;
+            justify-content: flex-start;
+            white-space:normal;
+            overflow-x:auto;
+            margin-left:10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        #match_artist_list::-webkit-scrollbar {
+            display: none;
+        }
+        #song_list {
+            display: flex;
+            justify-content: flex-start;
+        }
+        #artist_item {
+            margin-left:30px;
+        }
+        #artist_bar {
+            display: flex;
+            justify-content: flex-start;
+        }
+        #song_item {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+
+        }
+        .box{
+            border-radius: 70%;
+            overflow: hidden;
+        }
+        .profile {
+            object-fit:cover;
+
+        }
+    </style>
 </head>
 
 <body>
-    <h3>K-POP Artist</h3>
-    <div class="match_artist_list">
-        <ui class="artist_list">
-            {% for profile in profile_list%}
-            <p> {{profile.artist}}
-            <p><img src={{profile.profile_image}}></img></p>
-            {% endfor %}
-        </ul>
+    <div id="page">
+        <h1> Result Page!</h1>
+        <h3>K-POP Artist</h3>
+        <div id="artist_bar">
+            <button id="before_scroll" onclick="moveScrollLeft()">이전</button>
+            <div class="match_artist_list" id="match_artist_list">
+                {% for profile in profile_list%}
+                <div id="artist_item">
+                    <p> {{profile.artist}}
+                    <div class="box" width="180" height="180">
+                        <img class="profile" src={{profile.profile_image}} width="180" height="180">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button id="next_scroll" onclick="moveScrollRight()">다음</button>
+        </div>
+                
+
+        <h3>Today's Artist {{match_artist}}</h3>
+        
+        <div id="song_list">
+            <iframe
+                id="video"
+                width="960" 
+                height="540" 
+                src={{song_list.0.url}}
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+
+            <div class="match_song_list" id="match_song_list">
+                <div id="song_item">
+                    <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}} width="180" height="100"> </img>
+                    <p> {{song_list.0.title}} </p>
+                </div>
+                <div id="song_item">
+                    <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}} width="180" height="100"> </img>
+                    <p> {{song_list.1.title}} </p>
+                </div>
+                <div id="song_item">
+                    <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}} width="180" height="100"> </img>
+                    <p> {{song_list.2.title}} </p>
+                </div>
+                <div id="song_item">
+                    <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}} width="180" height="100"> </img>
+                    <p> {{song_list.3.title}} </p>
+                </div>
+            </div>
+        </div>
+
+        <form action="/mbti">{% csrf_token %}
+            <button type="submit">다시 하기</button>
+        </form>
     </div>
-            
-
-    <h3>Today's Artist</h3>
-    <p>{{match_artist}}</p>
-    <div class="match_song_list">
-        <ui class="song_list">
-            <p> {{song_list.0.title}} </p>
-            <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}} width="180" height="100"> </img>
-            <p> {{song_list.1.title}} </p>
-            <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}} width="180" height="100"> </img>
-            <p> {{song_list.2.title}} </p>
-            <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}} width="180" height="100"> </img>
-            <p> {{song_list.3.title}} </p>
-            <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}} width="180" height="100"> </img>
-        </ul>
-    </div>
-
-    <iframe
-        id="video"
-        width="640" 
-        height="360" 
-        src={{song_list.0.url}}
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-
-    <form action="/mbti">{% csrf_token %}
-        <button type="submit">다시 하기</button>
-    </form>
 
 
     <script>
@@ -64,6 +124,19 @@
                 $("#video").attr('src', $(this).attr('alt'));
                 $("#video").show();
             })
+            //$("#next_scroll").bind('click', function(){
+                //$('html, body').animate({scrollLeft:'0'}, 680);
+            //})
         })
+
+        moveScrollRight = function(){
+            var _scrollX = $('#match_artist_list').scrollLeft();
+            $('#match_artist_list').animate({ scrollLeft: _scrollX + 1700}, 1000);
+        }
+        moveScrollLeft = function(){
+            var _scrollX = $('#match_artist_list').scrollLeft();
+            $('#match_artist_list').animate({ scrollLeft: _scrollX - 1700}, 1000);
+        }
     </script>
+
 </body>
