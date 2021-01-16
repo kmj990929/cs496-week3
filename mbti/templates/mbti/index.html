@@ -7,7 +7,8 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" type="text/css" href="/static/main.css" />
-    {% comment %} <style>
+    <style>
+    {% comment %}
       body {
           background-image : url('https://www.slist.kr/news/photo/201608/4684_16715_3028.jpg');
           background-repeat : no-repeat;
@@ -30,7 +31,17 @@
           top : 600px;
           left : 700px;
       }
-    </style> {% endcomment %}
+    {% endcomment %}
+      @font-face {
+        font-family: 'Jal_Onuel';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      #page {
+        font-family: 'Jal_Onuel';
+      }
+    </style>
   </head>
 
 
@@ -44,7 +55,7 @@
 
     <!-- Banner -->
 			<section id="banner">
-				<div class="inner">
+				<div id="page" class="inner">
 					<h1><strong>MBTMI</strong></h1>
 					<p><strong> 킹민주의 개지리는 음악추천 </strong></p>
 				</div>
@@ -53,7 +64,7 @@
 
     <!-- Highlights -->
 			<section class="wrapper">
-				<div class="inner">
+				<div id="page" class="inner">
 					<header class="special">
 						<h2>성격 유형별 K-POP 추천</h2>
 						<p>전 세계가 주목하는 K-POP!!</br>
