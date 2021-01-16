@@ -57,7 +57,10 @@
                 <div id="artist_item">
                     <p> {{profile.artist}}
                     <div class="box" width="180" height="180">
-                        <img class="profile" src={{profile.profile_image}} width="180" height="180">
+                        <form action="/mbti/result/{{profile.artist}}" method="GET">{% csrf_token %}
+                            <button><img class="profile" src={{profile.profile_image}} width="180" height="180"></button>
+                            <input type="hidden" id="artist_list_string" name="artist_list_string" value="{{artist_list_string}}"></input>
+                        </form>
                     </div>
                 </div>
                 {% endfor %}

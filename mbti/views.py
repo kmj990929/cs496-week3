@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from . import calc
 import random
+import ast
 
 
 
@@ -61,7 +62,6 @@ def printQuestion(request, quesNum):
 
 
 def printResult(request):
-
     calc.questionCalc()
     artist_list = calc.estimateArtist()
     print("artist_list", artist_list)
@@ -88,8 +88,29 @@ def printResult(request):
 
     song_all = Song.objects.filter(artist = artist)
 
-    content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list}
+    content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list}
     return render(request, 'mbti/result.html', content)
+
+
+
+def printMatching(request, matching):
+    #song 만들기
+    isExistArtist = Song.objects.filter(artist=matching)
+    if (len(isExistArtist) == 0) :
+        print("new Artist")
+        makeSongs(matching)
+    song_all = Song.objects.filter(artist = matching) 
+
+    #profile 만들기
+    artist_list = request.GET['artist_list_string']
+    artist_list = ast.literal_eval(artist_list)
+    profile_list = []
+    for person in artist_list:
+        profile_list.append(Artist.objects.filter(artist=person)[0])
+
+    content = {'match_artist': matching, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list}
+    return render(request, 'mbti/result.html', content)
+
 
 
 def makeSongs(artist):

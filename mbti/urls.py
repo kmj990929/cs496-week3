@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.index),
     path('question/<quesNum>/', views.printQuestion, name="question"),
     path('result/', views.printResult, name="result"),
+    path('result/<matching>/', views.printMatching, name="matchResult")
 ]
