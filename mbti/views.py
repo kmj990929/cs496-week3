@@ -10,6 +10,7 @@ from .models import *
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from pyvirtualdisplay import Display
 from . import calc
 import random
 import ast
@@ -152,7 +153,10 @@ def getUrl(url):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('lang=ko_KR')
 
-    driver = webdriver.Chrome('C:/Users/q/Desktop/chromedriver.exe', chrome_options=chrome_options)
+    display = Display(visible=0, size = (1920, 1080))
+    display.start()
+
+    driver = webdriver.Chrome('/home/ubuntu/cs496-week3/chromedriver', chrome_options=chrome_options)
     driver.get(url)
     return driver
 
