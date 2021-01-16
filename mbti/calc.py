@@ -118,7 +118,8 @@ hardworking = 0
 extrovert = 0
 realistic = 0
 
-
+def estimateArtist():
+    return "iu"
 
 def questionCalc():
     question1()

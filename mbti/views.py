@@ -10,7 +10,7 @@ from .models import *
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from . import artist
+from . import calc
 
 
 
@@ -51,13 +51,15 @@ def printQuestion(request, quesNum):
 
 def printResult(request):
     answer_list = []
-    artist.questionCalc()
-    print("tlqkf " + str(artist.highSelfEsteem))
+    calc.questionCalc()
+    artist = calc.estimateArtist()
     isExistArtist = Artist.objects.filter(artist=artist)
-    print(isExistArtist)
     if (len(isExistArtist) == 0) :
         print("new Artist")
         makeSongs(artist)
+
+    #Answer 삭제
+    answer_all = Answer.objects.all()
     answer_all.delete()
 
     song_all = Song.objects.filter(artist = artist)
