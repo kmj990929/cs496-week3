@@ -126,11 +126,9 @@ def estimateArtist():
     personalityList[secondPersonality] = -999
     thirdPersonality = personalityList.index(max(personalityList))
     personalityList[thirdPersonality] = -999
-    print("lsit2", personalityList)
 
     personalitySet = set(personalityArtist[firstPersonality]) & set(personalityArtist[secondPersonality]) & set(personalityArtist[thirdPersonality])
     result = list(personalitySet)
-
 
     print("1st", str(firstPersonality))
     print("2nd", str(secondPersonality))
@@ -138,8 +136,26 @@ def estimateArtist():
 
     if len(result) != 0:
         return result
-
-    return ["iu"]
+    else:
+        # 첫번째 특징과 두번째 특징으로만
+        personalitySet = set(personalityArtist[firstPersonality]) & set(personalityArtist[secondPersonality])
+        result = list(personalitySet)
+        if len(result) != 0:
+            return result
+        else:
+            # 첫번째 특징과 세번째 특징으로만
+            personalitySet = set(personalityArtist[firstPersonality]) & set(personalityArtist[thirdPersonality])
+            result = list(personalitySet)
+            if len(result) != 0:
+                return result
+            else:
+                # 두번째 특징과 세번째 특징으로만
+                personalitySet = set(personalityArtist[secondPersonality]) & set(personalityArtist[thirdPersonality])
+                result = list(personalitySet)
+                if len(result) != 0:
+                    return result
+                    
+    return ["아이유"]
 
 def questionCalc():
     global highSelfEsteem
