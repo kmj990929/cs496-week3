@@ -1,37 +1,65 @@
-<style>
-    @font-face {
-        font-family: 'Jal_Onuel';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-    #page {
-        font-family: 'Jal_Onuel';
-    }
-</style>
+<!doctype html>
+<html lang="ko">
+    <head>
+        <title>MBTMI</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" type="text/css" href="/static/main.css" />
+        <style>
+            @font-face {
+                font-family: 'Jal_Onuel';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+            #page {
+                font-family: 'Jal_Onuel';
+            }
+        </style>
+    </head>
+    <body>
 
-<div id="page">
-    <h1> question page </h1>
+        <!-- Header -->
+            <header id="header">
+                <a class="logo" href="/mbti">MBTMI</a>
+            </header>
 
-    <h3> {{question}} </h3>
+        <!-- Heading -->
+			<div id="heading" >
+				<h1 id="page"><strong>Question Page</strong></h1>
+			</div>
 
-    <form action="/mbti/question/{{number}}" method="GET">{% csrf_token %}
-        <div class="input-group"> 
+        <!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div id="page" class="content">
+						<header>
+							<h2> {{question}} </h2>
+						</header>
+						<form action="/mbti/question/{{number}}" method="GET">{% csrf_token %}
+                            <div class="input-group"> 
 
-            <input type="radio" name="answer" id = "choice1" value="1">
-            <label for="choice1-1">매우 그렇다</label><br>
-            <input type="radio" name="answer" id = "choice2" value="2">
-            <label for="choice1-2">그렇다</label><br>
-            <input type="radio" name="answer" id = "choice3" value="3">
-            <label for="choice1-2">보통이다</label><br>
-            <input type="radio" name="answer" id = "choice4" value="4">
-            <label for="choice1-2">그렇지 않다</label><br>
-            <input type="radio" name="answer" id = "choice5" value="5">
-            <label for="choice1-2">매우 그렇지 않다</label><br>
+                                <input type="radio" id="radio-alpha" name="answer" value="1">
+                                <label for="radio-alpha">매우 그렇다</label><br>
+                                <input type="radio" id="radio-beta" name="answer" value="2">
+                                <label for="radio-beta">그렇다</label><br>
+                                <input type="radio" id="radio-gamma" name="answer" value="3">
+                                <label for="radio-gamma">보통이다</label><br>
+                                <input type="radio" id="radio-delta" name="answer" value="4">
+                                <label for="radio-delta">그렇지 않다</label><br>
+                                <input type="radio" id="radio-epsilon" name="answer" value="5">
+                                <label for="radio-epsilon">매우 그렇지 않다</label><br>
+                                <hr />
+                                <span class="input-group-btn">
+                                    <button class="button primary small" type="submit">save</button>
+                                </span>
+                            </div>
+                        </form>
+					</div>
+				</div>
+			</section>
 
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">save</button>
-            </span>
-        </div>
-    </form>
-</div>
+    </body>
+</html>
