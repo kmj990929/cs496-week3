@@ -119,7 +119,7 @@ extrovert = 0
 realistic = 0
 
 def estimateArtist():
-    return "iu"
+    return ["iu","AKMU"]
 
 def questionCalc():
     question1()

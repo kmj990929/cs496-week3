@@ -19,6 +19,7 @@ class Song(models.Model):
     title = models.TextField()
     url = models.TextField()
     thumbnail = models.TextField()
+    idx = models.IntegerField()
 
 class Artist(models.Model):
     artist = models.TextField()

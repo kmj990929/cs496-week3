@@ -11,6 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from . import calc
+import random
 
 
 
@@ -50,9 +51,14 @@ def printQuestion(request, quesNum):
 
 
 def printResult(request):
-    answer_list = []
+
     calc.questionCalc()
-    artist = calc.estimateArtist()
+    artist_list = calc.estimateArtist()
+    print("artist_list", artist_list)
+
+    randomIdx = random.randrange(0,len(artist_list))
+    artist = artist_list[randomIdx]
+
     isExistArtist = Artist.objects.filter(artist=artist)
     if (len(isExistArtist) == 0) :
         print("new Artist")
@@ -67,42 +73,6 @@ def printResult(request):
     content = {'match_artist': artist, 'song_list' : song_all}
     return render(request, 'mbti/result.html', content)
 
-
-
-def calculateMBTI(answer_list):
-    mbti_list = [0,0,0,0]
-
-    for i in range(len(answer_list)) :
-        mbti_list[0] += answer_list[i].answer * i
-        mbti_list[1] += answer_list[i].answer * i
-        mbti_list[2] += answer_list[i].answer * i
-        mbti_list[3] += answer_list[i].answer * i
-
-    mbti = ""
-    if mbti_list[0] > 50:
-        mbti += "I"
-    else:
-        mbti += "E"
-    if mbti_list[1] > 50:
-        mbti +=  "N"
-    else:
-        mbti += "S"
-    if mbti_list[2] > 50:
-        mbti +=  "T"
-    else:
-        mbti += "F"
-    if mbti_list[3] > 50:
-        mbti +=  "P"
-    else:
-        mbti += "J"
-
-    return mbti
-
-def matchArtist(mbti):
-    if (mbti == "INTP") :
-        return "iu"
-    else :
-        return "AKMU"
 
 def makeSongs(artist):
     #chrome 띄우지 않고 백그라운드에서 selenium 크롤링
@@ -136,7 +106,7 @@ def makeSongs(artist):
             i += 1
             print(song_url, song_thumbnail, song_title)
             ### 노래 db에 추가 ###
-            new_song = Song(artist = artist, url = song_url, title = song_title, thumbnail = song_thumbnail)
+            new_song = Song(artist = artist, url = song_url, title = song_title, thumbnail = song_thumbnail, idx = success)
             new_song.save()
         except:
             #print("ERROR")
