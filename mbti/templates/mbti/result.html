@@ -4,8 +4,19 @@
 </head>
 
 <body>
-    <p>{{match_artist}}</p>
+    <h3>K-POP Artist</h3>
+    <div class="match_artist_list">
+        <ui class="artist_list">
+            {% for profile in profile_list%}
+            <p> {{profile.artist}}
+            <p><img src={{profile.profile_image}}></img></p>
+            {% endfor %}
+        </ul>
+    </div>
+            
 
+    <h3>Today's Artist</h3>
+    <p>{{match_artist}}</p>
     <div class="match_song_list">
         <ui class="song_list">
             <p> {{song_list.0.title}} </p>

@@ -23,3 +23,4 @@ class Song(models.Model):
 
 class Artist(models.Model):
     artist = models.TextField()
+    profile_image = models.TextField()
