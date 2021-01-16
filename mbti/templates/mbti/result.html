@@ -43,6 +43,10 @@
             object-fit:cover;
 
         }
+        #img_button {
+            border:0;
+            outline:0;
+        }
     </style>
 </head>
 
@@ -58,7 +62,7 @@
                     <p> {{profile.artist}}
                     <div class="box" width="180" height="180">
                         <form action="/mbti/result/{{profile.artist}}" method="GET">{% csrf_token %}
-                            <button><img class="profile" src={{profile.profile_image}} width="180" height="180"></button>
+                            <button id="img_button"><img class="profile" src={{profile.profile_image}} width="180" height="180"></button>
                             <input type="hidden" id="artist_list_string" name="artist_list_string" value="{{artist_list_string}}"></input>
                         </form>
                     </div>
@@ -127,9 +131,6 @@
                 $("#video").attr('src', $(this).attr('alt'));
                 $("#video").show();
             })
-            //$("#next_scroll").bind('click', function(){
-                //$('html, body').animate({scrollLeft:'0'}, 680);
-            //})
         })
 
         moveScrollRight = function(){

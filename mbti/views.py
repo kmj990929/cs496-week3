@@ -104,6 +104,8 @@ def printMatching(request, matching):
     #profile 만들기
     artist_list = request.GET['artist_list_string']
     artist_list = ast.literal_eval(artist_list)
+    artist_idx = artist_list.index(matching)
+    artist_list = artist_list[artist_idx:] + artist_list[:artist_idx]
     profile_list = []
     for person in artist_list:
         profile_list.append(Artist.objects.filter(artist=person)[0])
