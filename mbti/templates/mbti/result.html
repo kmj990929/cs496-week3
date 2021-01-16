@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <head>
     <h1> Result Page!</h1>
 </head>
@@ -8,13 +9,13 @@
     <div class="match_song_list">
         <ui class="song_list">
             <p> {{song_list.0.title}} </p>
-            <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}}> </img>
+            <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}} width="180" height="100"> </img>
             <p> {{song_list.1.title}} </p>
-            <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}}> </img>
+            <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}} width="180" height="100"> </img>
             <p> {{song_list.2.title}} </p>
-            <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}}> </img>
+            <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}} width="180" height="100"> </img>
             <p> {{song_list.3.title}} </p>
-            <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}}> </img>
+            <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}} width="180" height="100"> </img>
         </ul>
     </div>
 
@@ -22,7 +23,7 @@
         id="video"
         width="640" 
         height="360" 
-        src={{song.url}}
+        src={{song_list.0.url}}
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
@@ -32,22 +33,22 @@
         <button type="submit">다시 하기</button>
     </form>
 
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function(){
             //웹페이지 열면
-            $("#video").hide();
             $("#clickable_thumbnail_0").click(function(){
                 $("#video").attr('src', $(this).attr('alt'));
                 $("#video").show();
+            })
             $("#clickable_thumbnail_1").click(function(){
                 $("#video").attr('src', $(this).attr('alt'));
                 $("#video").show();
+            })
             $("#clickable_thumbnail_2").click(function(){
                 $("#video").attr('src', $(this).attr('alt'));
                 $("#video").show();
+            })
             $("#clickable_thumbnail_3").click(function(){
                 $("#video").attr('src', $(this).attr('alt'));
                 $("#video").show();
