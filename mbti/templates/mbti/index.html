@@ -1,8 +1,13 @@
 <!doctype html>
 <html lang="ko">
   <head>
+    <title>MBTMI</title>
     <meta charset="utf-8">
-    <style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" type="text/css" href="/static/main.css" />
+    {% comment %} <style>
       body {
           background-image : url('https://www.slist.kr/news/photo/201608/4684_16715_3028.jpg');
           background-repeat : no-repeat;
@@ -25,11 +30,58 @@
           top : 600px;
           left : 700px;
       }
-    </style>
+    </style> {% endcomment %}
   </head>
-  <body>
-    <form action="./question/1" method="GET">{% csrf_token %}
-        <button type="submit" class="custom-btn">START</button>
-    </form>
+
+
+
+  <body class="is-preload">
+
+    <!-- Header -->
+			<header id="header">
+				<a class="logo" href=".">MBTMI</a>
+			</header>
+
+    <!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1><strong>MBTMI</strong></h1>
+					<p><strong> 킹민주의 개지리는 음악추천 </strong></p>
+				</div>
+				<video autoplay loop muted playsinline src="/static/banner.mov"></video>
+			</section>
+
+    <!-- Highlights -->
+			<section class="wrapper">
+				<div class="inner">
+					<header class="special">
+						<h2>성격 유형별 K-POP 추천</h2>
+						<p>전 세계가 주목하는 K-POP!!</br>
+            당신의 성격에 맞는 K-POP 음악을 찾고 싶다면!?</p>
+					</header>
+					<div class="highlights">
+
+            <section>
+            </section>
+
+            <form action="./question/1" method="GET">{% csrf_token %}
+              <button type="submit" class="icon fa-paper-plane-o button primary fit">START</button>
+            </form>
+
+            <section>
+            </section>
+						
+					</div>
+				</div>
+			</section>
+
   </body>
+
+  <!-- Scripts -->
+			<script src="/static/jquery.min.js"></script>
+			<script src="/static/browser.min.js"></script>
+			<script src="/static/breakpoints.min.js"></script>
+			<script src="/static/util.js"></script>
+			<script src="/static/main.js"></script>
+
 </html>
