@@ -72,6 +72,8 @@
             #ghost-button {
                 border:0;
                 outline:0;
+                margin-left:30px;
+                margin-top:30px;
             }
 
 
@@ -122,7 +124,7 @@
                                     <form action="/mbti/result/{{profile.artist}}" method="GET">{% csrf_token %}
                                         
                                             <div class="img_box">
-                                                <button id="ghost-button hover_box wrap" style="border:0;outline:0;" width="180" height="180">
+                                                <button id="ghost-button">
                                                     <div class="hover_box">
                                                         <div class="wrap">
                                                             <img class="profile" src={{profile.profile_image}} width="180" height="180">
