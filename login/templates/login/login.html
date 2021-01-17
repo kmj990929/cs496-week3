@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" type="text/css" href="/static/main.css" />
+        <style>
+            @font-face {
+                font-family: 'Jal_Onuel';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+            #page {
+                font-family: 'Jal_Onuel';
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Header -->
+            <header id="header">
+                <a class="logo" href="/mbti">MBTMI</a>
+            </header>
+
+        <!-- Heading -->
+			<div id="heading" >
+				<h1 id="page"><strong>Login Page</strong></h1>
+			</div>
+
+        <!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div id="page" class="content">
+						<form action="/login/success" method="GET">{% csrf_token %}
+                            <div class="input-group"> 
+                                <input type="text" name="userID" id="userContent" placeholder="ID">
+                                <input type="text" name="userPW" id="userContent" placeholder="Password">
+                                <span class="input-group-btn">
+                                    <button class="button primary small" type="submit" id="login_btn">Login</button>
+                                </span>
+                            </div>
+                        </form>
+					</div>
+				</div>
+			</section>
+
+    </body>
+
+</html>
