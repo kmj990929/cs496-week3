@@ -14,7 +14,6 @@
                 justify-content: flex-start;
                 white-space:normal;
                 overflow-x:auto;
-                margin-left:10px;
                 -ms-overflow-style: none;
                 scrollbar-width: none;
             }
@@ -36,7 +35,6 @@
                 display: flex;
                 justify-content: flex-start;
                 margin-bottom: 10px;
-
             }
             .box{
                 border-radius: 70%;
@@ -51,7 +49,7 @@
 
 
 
-            .img_box{ width: 180px; height: 180px; display: inline-block;  transform: translate(0,0); position: relative; transition: 0.6s; }
+            .img_box{ width: 180px; height: 180px; display: inline-block;  transform: translate(0,0); position: relative; transition: 0.6s; margin-right:20px}
             .img_box .hover_box{ opacity: 0; transition: 0.3s; position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 50%; background-color: rgba(0,0,0,0.8); }
             .img_box .hover_box span{ display: block; width: 96px; height: 30px; background-color: #0c0c0c; line-height: 30px; text-align: center; color: #fff; font-weight: 500; font-size: 14px; }
             .img_box .hover_box span:nth-child(1){ position: absolute; left: -20px; top: 45%;  transform: translate(-20px,-20px) rotate(-15deg); transition: 0.5s; transition-delay: 0.1s; opacity: 0; }
@@ -59,7 +57,7 @@
 
             .img_box .wrap{  overflow: hidden; border-radius: 50%; box-shadow: 20px 20px 24px rgba(0,0,0,0.5); transition: 0.6s;  }
             .img_box{ transform: translate(0,-30px);  }
-            .img_box .wrap{  box-shadow: 20px 20px 24px rgba(0,0,0,0.5); }
+            .img_box .wrap{  box-shadow: 10px 10px 14px rgba(0,0,0,0.5); }
             .img_box .hover_box{ opacity: 1; }
             .img_box .hover_box span:nth-child(1){ transform: translate(0,0) rotate(-15deg); opacity: 1; }
             .img_box .hover_box span:nth-child(2){ transform: translate(0,0) rotate(-15deg); opacity: 1; }
@@ -75,6 +73,48 @@
                 margin-left:30px;
                 margin-top:30px;
             }
+            .next-button {
+                margin-top:90px;
+            }
+
+
+            .left_box{ width: 65.5%; margin-right: 3%; float: left; transform: translate(-30px,0); opacity: 0; transition: 0.8s; }
+            .left_box .video_box img{ width: 100%; display: block;  }
+            .left_box .text_box{ border-top: 2px solid #313131; margin-top: 20px; padding-top: 20px; }
+            .left_box .text_box span{ display: block; font-size: 16px; font-weight: 600; letter-spacing: -0.5px; color:#222222; margin-bottom: 15px; }
+            .left_box .text_box strong{ font-size: 32px; font-weight: 600; letter-spacing: -1px; color:#222222; display:block; word-break: keep-all; }
+            .right_box{ float: left; width: 31.5%;  transform: translate(30px,0); opacity: 0; transition: 0.8s; }
+            .right_box ul li{ margin-bottom: 16px; }
+            .right_box ul li:last-child{ margin-bottom: 0; }
+            .right_box ul li:after{ content: ""; display: table; clear: both; }
+            .right_box ul li .video_box{ float: left; width: 45%; margin-right: 5%; }
+            .right_box ul li .text_box{ float: left; width: 50%; position: relative; }
+            .right_box ul li .text_box strong{ transform: translate(0,35%); display: block; font-size: 16px; font-weight: 400 !important; letter-spacing: -0.5px; line-height: 30px; }
+
+            .right_box{transform: translate(0,0); opacity: 1; transition-delay: 0.2s; }
+            .left_box{transform: translate(0,0); opacity: 1; transition-delay: 0.2s;  }
+            
+            
+            .text_box{ position: relative; transform: translate(40px,0); opacity: 0; transition: 0.8s; transition-delay: .2s; }
+            .text_box{transform: translate(0,0); opacity: 1; }
+            
+            .text_box > span{ display: block; font-size: 20px; font-weight: 500; color:#ffffff; letter-spacing: -1px; margin-bottom: 10px; }
+            .text_box > strong{ display:block; font-size: 26px; font-weight: 600; color:#ffffff; letter-spacing: -1px; line-height: 46px; }
+            .text_box > strong span{ font-weight: 600; font-size: 36px; }
+            .text_box dl{ margin-top: 15px; margin-bottom: 40px; }
+            .text_box dl:after{ content: ""; display: table; clear: both; }
+            .text_box dl dt{ float: left; font-size: 16px; font-weight: 500; letter-spacing: -0.5px; color:#ffffff; }
+            .text_box dl dt:after{ content:""; width: 53px; height: 1px; background-color: #d9e7ed; display: inline-block; margin: 0 13px; position: relative; top: -5px; }
+            .text_box dl dd{ float: left; font-size: 16px; font-weight: 300; letter-spacing: -0.5px; color:#ffffff;  }
+            .text_box a{ display: block; padding: 14px 50px; border: 2px solid #fff; border-radius: 15px; font-weight: 300;
+                color: rgba(255,255,255,0); font-size: 16px; letter-spacing: -1px; position: relative; z-index: 2; overflow: hidden; transition: 0.4s; display: inline-block;
+            }
+            .text_box a:before{ content: ""; display: block; width: 300px; height: 300px; border-radius: 50%; background-color: #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) scale(0); z-index: 1; }
+            .text_box a:after{ content: "오디션 바로가기"; display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0; padding: 14px 48px; font-weight: 500; color: #ffffff; font-size: 16px;
+                letter-spacing: -1px; z-index: 3; box-sizing: border-box;
+            }
+            .text_box a:hover:before{ transform: translate(-50%,-50%) scale(1); transition: 1.0s; }
+            .text_box a:hover:after{ color:#313131;  }
 
 
 
@@ -112,17 +152,19 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div id="page" class="content">
-                       
-                        <h3>K-POP Artist</h3>
-                        <div id="artist_bar">
-                            <button id="before_scroll" onclick="moveScrollLeft()">이전</button>
-                            <div class="match_artist_list" id="match_artist_list">
-                                {% for profile in profile_list%}
-                                <div id="artist_item">
-                                    <p> {{profile.artist}}
-                                    
-                                    <form action="/mbti/result/{{profile.artist}}" method="GET">{% csrf_token %}
-                                        
+
+                        <h2>K-POP Artist</h2>
+                        <div id="artist_bar" class="row">
+                            <div class="col-1 col-12-small">
+                                <button id="before_scroll" class="next-button" onclick="moveScrollLeft()">←</button>
+                            </div>
+
+                            <div class="col-10 col-12-small">
+                                <div class="match_artist_list" id="match_artist_list">
+                                    {% for profile in profile_list%}
+                                    <div id="artist_item">
+                                        <p> {{profile.artist}}
+                                        <form action="/mbti/result/{{profile.artist}}" method="GET">{% csrf_token %}
                                             <div class="img_box">
                                                 <button id="ghost-button">
                                                     <div class="hover_box">
@@ -133,52 +175,68 @@
                                                     </div>
                                                 </button>
                                             </div>
-                                        
-                                    </form>
-                                        
+                                        </form>   
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
                             </div>
-                            <button id="next_scroll" onclick="moveScrollRight()">다음</button>
-                        </div>
-                                
 
-                        <h3>Today's Artist {{match_artist}}</h3>
+                            <div class="col-1 col-12-small">
+                                <button id="next_scroll" class="next-button" onclick="moveScrollRight()">→</button>
+                            </div>
+                        </div>
                         
-                        <div id="song_list">
-                            <iframe
-                                id="video"
-                                width="960" 
-                                height="540" 
-                                src={{song_list.0.url}}
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                        <hr />  
 
-                            <div class="match_song_list" id="match_song_list">
-                                <div id="song_item">
-                                    <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}} width="180" height="100"> </img>
-                                    <p> {{song_list.0.title}} </p>
+                        <h2>Today's Artist {{match_artist}}</h2>
+                        <div id="song_list" class="row">
+                            <div class="left_box">
+                                <div class="video_box">
+                                    <iframe
+                                        id="video"
+                                        width="825" 
+                                        height="464" 
+                                        src={{song_list.0.url}}
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
                                 </div>
-                                <div id="song_item">
-                                    <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}} width="180" height="100"> </img>
-                                    <p> {{song_list.1.title}} </p>
-                                </div>
-                                <div id="song_item">
-                                    <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}} width="180" height="100"> </img>
-                                    <p> {{song_list.2.title}} </p>
-                                </div>
-                                <div id="song_item">
-                                    <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}} width="180" height="100"> </img>
-                                    <p> {{song_list.3.title}} </p>
+                            </div>
+
+                            <div class="right_box">
+                                <div class="match_song_list" id="match_song_list">
+                                    <div id="song_item">
+                                        <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}} width="180" height="100"> </img>
+                                        <p> {{song_list.0.title}} </p>
+                                    </div>
+                                    <div id="song_item">
+                                        <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}} width="180" height="100"> </img>
+                                        <p> {{song_list.1.title}} </p>
+                                    </div>
+                                    <div id="song_item">
+                                        <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}} width="180" height="100"> </img>
+                                        <p> {{song_list.2.title}} </p>
+                                    </div>
+                                    <div id="song_item">
+                                        <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}} width="180" height="100"> </img>
+                                        <p> {{song_list.3.title}} </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <form action="/mbti">{% csrf_token %}
-                            <button type="submit">다시 하기</button>
-                        </form>
+                        <hr />  
+
+                        <div class="row">
+                            <div class="col-3 col-12-small"> </div>
+                            <div class="col-6 col-12-small">
+                                <form action="/mbti">{% csrf_token %}
+                                    <button type="submit" class="icon fa-paper-plane-o button primary fit">다시 하기</button>
+                                </form>
+                            </div>
+                            <div class="col-3 col-12-small"> </div>
+                        </div>
 
 					</div>
 				</div>
@@ -210,11 +268,11 @@
 
             moveScrollRight = function(){
                 var _scrollX = $('#match_artist_list').scrollLeft();
-                $('#match_artist_list').animate({ scrollLeft: _scrollX + 1000}, 1000);
+                $('#match_artist_list').animate({ scrollLeft: _scrollX + 980}, 1000);
             }
             moveScrollLeft = function(){
                 var _scrollX = $('#match_artist_list').scrollLeft();
-                $('#match_artist_list').animate({ scrollLeft: _scrollX - 1000}, 1000);
+                $('#match_artist_list').animate({ scrollLeft: _scrollX - 980}, 1000);
             }
         </script>
 </html>
