@@ -83,10 +83,6 @@ def printResult(request):
         print("new Artist")
         makeSongs(artist)
 
-    #Answer 삭제
-    answer_all = Answer.objects.all()
-    answer_all.delete()
-
     song_all = Song.objects.filter(artist = artist)
 
     content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list}

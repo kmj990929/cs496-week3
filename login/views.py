@@ -27,7 +27,7 @@ def checkLogin(request):
     if (sameID.userPW == userPW) :
         #쿠키 남기기
         #홈으로 이동하도록 하기
-        request.session['userID']=userID
+        request.session['userName']=sameID.userName
         return redirect('/home/')
     else:
         content = {'announce' : "비밀번호가 틀렸습니다."}
@@ -37,10 +37,11 @@ def signup(request):
     return render(request, 'login/signup.html')
 
 def checkSignup(request):
+    userName = request.GET['userName']
     userID = request.GET['userID']
     userPW = request.GET['userPW']
     if (len(User.objects.filter(userID = userID)) == 0):
-        newUser = User(userID = userID, userPW = userPW, mbti="")
+        newUser = User(userName = userName, userID = userID, userPW = userPW, mbti="")
         newUser.save()
         return render(request, 'login/login.html')
     else:

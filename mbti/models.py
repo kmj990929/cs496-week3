@@ -9,11 +9,6 @@ class Answer(models.Model):
     question_number = models.IntegerField()
     answer = models.IntegerField()
 
-class User(models.Model):
-    userID = models.TextField()
-    userPW = models.TextField()
-    mbti = models.TextField()
-
 class Song(models.Model):
     artist = models.TextField()
     title = models.TextField()

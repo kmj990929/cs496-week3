@@ -4,9 +4,9 @@ from django.shortcuts import redirect
 # Create your views here.
 def index(request):
     #request.session.clear()
-    userID = request.session.get('userID')
-    if userID:
-        print(userID)
-        return render(request, 'home/home.html')
+    userName = request.session.get('userName')
+    if userName:
+        content = {'userName':userName}
+        return render(request, 'home/home.html', content)
     else:
         return redirect('/login/')

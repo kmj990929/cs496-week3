@@ -35,7 +35,8 @@
 				<div class="inner">
 					<div id="page" class="content">
 						<form action="/login/signup/success" method="GET">{% csrf_token %}
-                            <div class="input-group"> 
+                            <div class="input-group">
+                                <input type="text" name="userName" id="userContent" placeholder="Name">
                                 <input type="text" name="userID" id="userContent" placeholder="ID">
                                 <input type="text" name="userPW" id="userContent" placeholder="Password">
                                 <span class="input-group-btn">
