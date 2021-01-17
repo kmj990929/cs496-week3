@@ -5,6 +5,9 @@ from django.shortcuts import redirect
 
 # Create your views here.
 def index(request):
+    userName = request.session.get('userName')
+    if userName:
+        request.session.clear()   
     return render(request, 'login/login.html')
 
 def checkLogin(request):

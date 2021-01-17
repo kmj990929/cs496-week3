@@ -86,6 +86,7 @@ def printResult(request):
     song_all = Song.objects.filter(artist = artist)
 
     content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list}
+
     return render(request, 'mbti/result.html', content)
 
 
