@@ -41,19 +41,19 @@
 						<form action="/mbti/question/{{number}}" method="GET">{% csrf_token %}
                             <div class="input-group"> 
 
-                                <input type="radio" id="radio-alpha" name="answer" value="1">
+                                <input type="radio" id="radio-alpha" name="answer" class="radio_btn" value="1">
                                 <label for="radio-alpha">매우 그렇다</label><br>
-                                <input type="radio" id="radio-beta" name="answer" value="2">
+                                <input type="radio" id="radio-beta" name="answer" class="radio_btn" value="2">
                                 <label for="radio-beta">그렇다</label><br>
-                                <input type="radio" id="radio-gamma" name="answer" value="3">
+                                <input type="radio" id="radio-gamma" name="answer" class="radio_btn" value="3">
                                 <label for="radio-gamma">보통이다</label><br>
-                                <input type="radio" id="radio-delta" name="answer" value="4">
+                                <input type="radio" id="radio-delta" name="answer" class="radio_btn" value="4">
                                 <label for="radio-delta">그렇지 않다</label><br>
-                                <input type="radio" id="radio-epsilon" name="answer" value="5">
+                                <input type="radio" id="radio-epsilon" name="answer" class="radio_btn" value="5">
                                 <label for="radio-epsilon">매우 그렇지 않다</label><br>
                                 <hr />
                                 <span class="input-group-btn">
-                                    <button class="button primary small" type="submit">save</button>
+                                    <button class="button primary small" type="submit" id="save_btn" disabled>save</button>
                                 </span>
                             </div>
                         </form>
@@ -62,4 +62,14 @@
 			</section>
 
     </body>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                //웹페이지 열면
+                $(".radio_btn").click(function(){
+                    $("#save_btn").attr('disabled', false);
+                })
+            })
+        </script>
 </html>
