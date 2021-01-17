@@ -27,6 +27,7 @@ def checkLogin(request):
     if (sameID.userPW == userPW) :
         #쿠키 남기기
         #홈으로 이동하도록 하기
+        request.session['userID']=userID
         return redirect('/mbti/')
     else:
         content = {'announce' : "비밀번호가 틀렸습니다."}
