@@ -18,6 +18,16 @@
                 font-family: 'Jal_Onuel';
             }
 
+            #test_bar {
+                display: flex;
+                justify-content: flex-start;
+                font-size : 30px;
+            }
+            #test_btn {
+                font-size : 30px;
+                margin-left: 30px;
+            }
+
         </style>
     </head>
     <body>
@@ -31,6 +41,24 @@
 			<div id="heading" >
 				<h1 id="page"><strong>{{userName}}님의 Home Page</strong></h1>
 			</div>
+
+            <section id="main" class="wrapper">
+				<div class="inner">
+					<div id="page" class="content">
+                        <div class="input-group" id="test_bar"> 
+                            <p>성향 검사를 진행하면, {{userName}}님이 좋아하실만한 음악을 추천받을 수 있어요!</p>
+                            <div id="test_btn">
+                                <form action='/mbti/question/1'>
+                                    <button class="button primary small" type="submit" id="login_btn">검사받으러 가기</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        
+					</div>
+				</div>
+			</section>
 
 
 
