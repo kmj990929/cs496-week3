@@ -18,12 +18,6 @@ import ast
 
 
 def index(request):
-    #request.session.clear()
-    userID = request.session.get('userID')
-    if userID:
-        print(userID)
-    else:
-        print("login 안됨")
     return render(request, 'mbti/index.html')
 
 

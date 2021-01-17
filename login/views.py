@@ -28,7 +28,7 @@ def checkLogin(request):
         #쿠키 남기기
         #홈으로 이동하도록 하기
         request.session['userID']=userID
-        return redirect('/mbti/')
+        return redirect('/home/')
     else:
         content = {'announce' : "비밀번호가 틀렸습니다."}
         return render(request, 'login/loginmodal.html', content)
