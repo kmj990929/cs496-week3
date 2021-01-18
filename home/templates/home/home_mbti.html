@@ -123,22 +123,26 @@
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div id="page" class="modal-content">
-                            <div class="left_box col-12-small">
-                                <div class="video_box">
-                                    <iframe
-                                        id="video"
-                                        width="800" 
-                                        height="450" 
-                                        src={{song_list.0.0.url}}
-                                        onload="autoResize(this)"
-                                        style="width:107%;"
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
+                        <div class="left_box col-12-small">
+                            <div class="video_box">
+                                <iframe
+                                    id="video"
+                                    width="800" 
+                                    height="450" 
+                                    src={{song_list.0.0.url}}
+                                    onload="autoResize(this)"
+                                    style="width:107%;"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
                             </div>
-                            <p><br /></p>
+                        </div>
+
+                        <div style="cursor:pointer; text-align: center; padding-bottom: 10px; padding-top: 10px;">
+                            <button>좋아요</button>
+                        </div>
+
                         <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
                             <span class="pop_bt" style="font-size: 13pt;" >
                                 닫기
@@ -160,10 +164,6 @@
             $("#video").attr('src', $(this).attr('alt'));
             $('#myModal').show();
         }
-        $("#clickable_thumbnail_2").click(function(){
-            $("#video").attr('src', $(this).attr('alt'));
-            $("#myModal").show();
-        })
         $(".clickable_thumbnail").click(function(){
             $("#video").attr('src', $(this).attr('alt'));
             $("#myModal").show();
