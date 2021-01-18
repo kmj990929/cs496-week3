@@ -111,7 +111,10 @@ def printMatching(request, matching):
     for person in artist_list:
         profile_list.append(Artist.objects.filter(artist=person)[0])
 
-    content = {'match_artist': matching, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list}
+    mbti_list = request.GET['mbti_list_string']
+    mbti_list = ast.literal_eval(mbti_list)
+
+    content = {'match_artist': matching, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, 'mbti_list': mbti_list}
     return render(request, 'mbti/result.html', content)
 
 
