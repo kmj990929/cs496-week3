@@ -54,7 +54,7 @@
         <!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/mbti">Home</a></li>
+					<li><a href="/mbti">Main</a></li>
 					<li><a href="/login">Login</a></li>
 				</ul>
 			</nav>
@@ -68,26 +68,38 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div id="page" class="content">
-						<form action="/login/signup/success" method="GET">{% csrf_token %}
-                            <div class="input-group"> 
-                                <input type="text" name="userID" id="userContent" placeholder="ID">
-                                <input type="password" name="userPW" id="userContent" placeholder="Password">
-                                <span class="input-group-btn">
-                                    <button class="button primary small" type="submit" id="signup_submit_btn">완료</button>
-                                </span>
+
+                        <h2 align="center">회원가입</h2>
+
+                        <div class="row" style="margin-bottom:-40px;">
+                            <div class="col-3 col-12-small">
                             </div>
-                        </form>
+                            <div class="col-6 col-12-small">
+                                <form action="/login/signup/success" method="GET">{% csrf_token %}
+                                    <div class="input-group">
+                                        <input id="jungin" type="text" name="userName" id="userContent" placeholder="Name">
+                                        <input id="jungin" type="text" name="userID" id="userContent" placeholder="ID">
+                                        <input id="jungin" type="password" name="userPW" id="userContent" placeholder="Password">
+                                        <span class="input-group-btn">
+                                            <button class="button primary fit" type="submit" id="signup_submit_btn">완료</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-3 col-12-small">
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</section>
 
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div id="page" class="modal-content">
                             <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">회원가입 실패</span></b></span></p>
                             <p style="text-align: center; line-height: 1.5;"><br /></p>
-                            <p style="text-align: center; line-height: 1.5;"><span style="font-size: 14pt;">이미 등록된 ID입니다.</span></p>
-                            <p style="text-align: center; line-height: 1.5;"><br /></p>
+                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;">이미 등록된 ID입니다.</span></p>
+                            <p style="text-align: center; line-height: 0;"><br /></p>
                             <p><br /></p>
                         <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
                             <span class="pop_bt" style="font-size: 13pt;" >
