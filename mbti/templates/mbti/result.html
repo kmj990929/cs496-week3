@@ -79,7 +79,8 @@
 
 
             #thumb_text{
-                margin:3px;
+                margin-left:5px;
+                font-size:12px;
             }
 
             #img_button {
@@ -161,12 +162,12 @@
 
                         <h2>Today's Artist {{match_artist}}</h2>
                         <div id="song_list" class="row">
-                            <div class="left_box">
+                            <div class="left_box col-12-small">
                                 <div class="video_box">
                                     <iframe
                                         id="video"
-                                        width="825" 
-                                        height="464" 
+                                        width="800" 
+                                        height="450" 
                                         src={{song_list.0.url}}
                                         onload="autoResize(this)"
                                         style="width:107%;"
@@ -177,23 +178,23 @@
                                 </div>
                             </div>
 
-                            <div class="right_box">
+                            <div class="right_box col-12-small">
                                 <div class="match_song_list" id="match_song_list">
                                     <div id="song_item">
                                         <img id="clickable_thumbnail_0" src={{song_list.0.thumbnail}} alt={{song_list.0.url}} width="180" height="100"> </img>
-                                        <p> {{song_list.0.title}} </p>
+                                        <p id="thumb_text"> {{song_list.0.title}} </p>
                                     </div>
                                     <div id="song_item">
                                         <img id="clickable_thumbnail_1" src={{song_list.1.thumbnail}} alt={{song_list.1.url}} width="180" height="100"> </img>
-                                        <p> {{song_list.1.title}} </p>
+                                        <p id="thumb_text"> {{song_list.1.title}} </p>
                                     </div>
                                     <div id="song_item">
                                         <img id="clickable_thumbnail_2" src={{song_list.2.thumbnail}} alt={{song_list.2.url}} width="180" height="100"> </img>
-                                        <p> {{song_list.2.title}} </p>
+                                        <p id="thumb_text"> {{song_list.2.title}} </p>
                                     </div>
                                     <div id="song_item">
                                         <img id="clickable_thumbnail_3" src={{song_list.3.thumbnail}} alt={{song_list.3.url}} width="180" height="100"> </img>
-                                        <p> {{song_list.3.title}} </p>
+                                        <p id="thumb_text"> {{song_list.3.title}} </p>
                                     </div>
                                 </div>
                             </div>
@@ -211,9 +212,8 @@
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-4 col-12-small">
-                                <form action="/home" method="GET">{% csrf_token %}
+                                <form action="/home">{% csrf_token %}
                                     <button type="submit" class="icon fa-home button primary fit">홈으로 이동</button>
-                                    <input type="hidden" id="mbti_result" name="mbti_result" value="mbti"></input>
                                 </form>
                             </div>
                             <div class="col-1 col-12-small"> </div>
