@@ -56,19 +56,23 @@
             <section id="main" class="wrapper">
 				<div class="inner">
 					<div id="page" class="content">
-                        <div class="input-group" id="test_bar"> 
-                            <p>성향 검사를 진행하면, {{userName}}님이 좋아하실만한 음악을 추천받을 수 있어요!</p>
-                            <div id="test_btn">
-                                <form action='/mbti/question/1'>
-                                    <button class="button primary small" type="submit" id="login_btn">검사받으러 가기</button>
-                                </form>
+
+                        <div class="row">
+                            <div class="input-group" id="test_bar"> 
+                                <p>성향 검사를 진행하면, {{userName}}님이 좋아하실만한 음악을 추천받을 수 있어요!</p>
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div  class="col-3 col-12-small"> </div>
+                            <div class="col-6 col-12-small">
+                                <form action='/mbti/question/1'>
+                                        <button class="button primary fit" type="submit" id="login_btn">검사받으러 가기</button>
+                                    </form>
+                            </div>
+                            <div class="col-3 col-12-small"> </div>
+                        </div>
 
-                        <form action='/login'>
-                            <button class="button primary small" type="submit" id="logout_btn">로그아웃</button>
-                        </form>
 					</div>
 				</div>
 			</section>
