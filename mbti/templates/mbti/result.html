@@ -113,7 +113,18 @@
         <!-- Header -->
             <header id="header">
                 <a class="logo" href="/mbti">MBTMI</a>
+                <nav>
+					<a href="#menu">Menu</a>
+				</nav>
             </header>
+
+        <!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/mbti">Home</a></li>
+					<li><a href="/login">Login</a></li>
+				</ul>
+			</nav>
 
         <!-- Heading -->
 			<div id="heading" >
@@ -124,8 +135,6 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div id="page" class="content">
-
-                        <h2>{{mbti_list.0}}, {{mbti_list.1}}, {{mbti_list.2}} 당신에게는 아래의 K-POP ARTIST들을 추천드려요!</h2>
 
                         <h2>K-POP Artist</h2>
                         <div id="artist_bar" class="row">
@@ -214,9 +223,8 @@
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-4 col-12-small">
-                                <form action="/home" method="GET">{% csrf_token %}
+                                <form action="/home">{% csrf_token %}
                                     <button type="submit" class="icon fa-home button primary fit">홈으로 이동</button>
-                                    <input type="hidden" id="mbti_result" name="mbti_result" value="{{mbti_list}}"></input>
                                 </form>
                             </div>
                             <div class="col-1 col-12-small"> </div>
@@ -259,6 +267,13 @@
             $('#match_artist_list').animate({ scrollLeft: _scrollX - 980}, 1000);
         }
     </script>
+
+    <!-- Scripts -->
+			<script src="/static/jquery.min.js"></script>
+			<script src="/static/browser.min.js"></script>
+			<script src="/static/breakpoints.min.js"></script>
+			<script src="/static/util.js"></script>
+			<script src="/static/main.js"></script>
 </html>
 
 

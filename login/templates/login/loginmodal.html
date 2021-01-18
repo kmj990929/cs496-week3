@@ -48,7 +48,18 @@
         <!-- Header -->
             <header id="header">
                 <a class="logo" href="/mbti">MBTMI</a>
+                <nav>
+					<a href="#menu">Menu</a>
+				</nav>
             </header>
+
+        <!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/mbti">Home</a></li>
+					<li><a href="/login">Login</a></li>
+				</ul>
+			</nav>
 
         <!-- Heading -->
 			<div id="heading" >
@@ -62,7 +73,7 @@
 						<form action="/login/success" method="GET">{% csrf_token %}
                             <div class="input-group"> 
                                 <input type="text" name="userID" id="userContent" placeholder="ID">
-                                <input type="text" name="userPW" id="userContent" placeholder="Password">
+                                <input type="password" name="userPW" id="userContent" placeholder="Password">
                                 <span class="input-group-btn">
                                     <button class="button primary small" type="submit" id="login_btn">Login</button>
                                 </span>
@@ -103,5 +114,12 @@
              $('#myModal').hide();
         };
       </script>
+
+    <!-- Scripts -->
+			<script src="/static/jquery.min.js"></script>
+			<script src="/static/browser.min.js"></script>
+			<script src="/static/breakpoints.min.js"></script>
+			<script src="/static/util.js"></script>
+			<script src="/static/main.js"></script>
 
 </html>
