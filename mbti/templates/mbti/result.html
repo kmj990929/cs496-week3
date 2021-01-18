@@ -45,10 +45,6 @@
 
             }
 
-
-
-
-
             .img_box{ width: 180px; height: 180px; display: inline-block;  transform: translate(0,0); position: relative; transition: 0.6s; margin-right:20px}
             .img_box .hover_box{ opacity: 0; transition: 0.3s; position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 50%; background-color: rgba(0,0,0,0.8); }
             .img_box .hover_box span{ display: block; width: 96px; height: 30px; background-color: #0c0c0c; line-height: 30px; text-align: center; color: #fff; font-weight: 500; font-size: 14px; }
@@ -62,10 +58,6 @@
             .img_box .hover_box span:nth-child(1){ transform: translate(0,0) rotate(-15deg); opacity: 1; }
             .img_box .hover_box span:nth-child(2){ transform: translate(0,0) rotate(-15deg); opacity: 1; }
             .img_box img{ display: block; }
-            .text_box{ margin-top: 30px; }
-
-
-
 
             #ghost-button {
                 border:0;
@@ -77,48 +69,18 @@
                 margin-top:90px;
             }
 
-
             .left_box{ width: 65.5%; margin-right: 3%; float: left; transform: translate(-30px,0); opacity: 0; transition: 0.8s; }
             .left_box .video_box img{ width: 100%; display: block;  }
-            .left_box .text_box{ border-top: 2px solid #313131; margin-top: 20px; padding-top: 20px; }
-            .left_box .text_box span{ display: block; font-size: 16px; font-weight: 600; letter-spacing: -0.5px; color:#222222; margin-bottom: 15px; }
-            .left_box .text_box strong{ font-size: 32px; font-weight: 600; letter-spacing: -1px; color:#222222; display:block; word-break: keep-all; }
             .right_box{ float: left; width: 31.5%;  transform: translate(30px,0); opacity: 0; transition: 0.8s; }
-            .right_box ul li{ margin-bottom: 16px; }
-            .right_box ul li:last-child{ margin-bottom: 0; }
-            .right_box ul li:after{ content: ""; display: table; clear: both; }
-            .right_box ul li .video_box{ float: left; width: 45%; margin-right: 5%; }
-            .right_box ul li .text_box{ float: left; width: 50%; position: relative; }
-            .right_box ul li .text_box strong{ transform: translate(0,35%); display: block; font-size: 16px; font-weight: 400 !important; letter-spacing: -0.5px; line-height: 30px; }
 
             .right_box{transform: translate(0,0); opacity: 1; transition-delay: 0.2s; }
             .left_box{transform: translate(0,0); opacity: 1; transition-delay: 0.2s;  }
-            
-            
-            .text_box{ position: relative; transform: translate(40px,0); opacity: 0; transition: 0.8s; transition-delay: .2s; }
-            .text_box{transform: translate(0,0); opacity: 1; }
-            
-            .text_box > span{ display: block; font-size: 20px; font-weight: 500; color:#ffffff; letter-spacing: -1px; margin-bottom: 10px; }
-            .text_box > strong{ display:block; font-size: 26px; font-weight: 600; color:#ffffff; letter-spacing: -1px; line-height: 46px; }
-            .text_box > strong span{ font-weight: 600; font-size: 36px; }
-            .text_box dl{ margin-top: 15px; margin-bottom: 40px; }
-            .text_box dl:after{ content: ""; display: table; clear: both; }
-            .text_box dl dt{ float: left; font-size: 16px; font-weight: 500; letter-spacing: -0.5px; color:#ffffff; }
-            .text_box dl dt:after{ content:""; width: 53px; height: 1px; background-color: #d9e7ed; display: inline-block; margin: 0 13px; position: relative; top: -5px; }
-            .text_box dl dd{ float: left; font-size: 16px; font-weight: 300; letter-spacing: -0.5px; color:#ffffff;  }
-            .text_box a{ display: block; padding: 14px 50px; border: 2px solid #fff; border-radius: 15px; font-weight: 300;
-                color: rgba(255,255,255,0); font-size: 16px; letter-spacing: -1px; position: relative; z-index: 2; overflow: hidden; transition: 0.4s; display: inline-block;
+
+
+
+            #thumb_text{
+                margin:3px;
             }
-            .text_box a:before{ content: ""; display: block; width: 300px; height: 300px; border-radius: 50%; background-color: #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) scale(0); z-index: 1; }
-            .text_box a:after{ content: "오디션 바로가기"; display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0; padding: 14px 48px; font-weight: 500; color: #ffffff; font-size: 16px;
-                letter-spacing: -1px; z-index: 3; box-sizing: border-box;
-            }
-            .text_box a:hover:before{ transform: translate(-50%,-50%) scale(1); transition: 1.0s; }
-            .text_box a:hover:after{ color:#313131;  }
-
-
-
-
 
             #img_button {
                 border:0;
@@ -134,6 +96,15 @@
                 font-family: 'Jal_Onuel';
             }
         </style>
+
+        <script type="text/javascript">
+        // iframe resize
+        function autoResize(i)
+        {
+            var iframeHeight=(i).contentWindow.document.body.scrollHeight;
+            (i).height=iframeHeight+20;
+        }
+        </script>
     </head>
 
     <body>
@@ -197,6 +168,8 @@
                                         width="825" 
                                         height="464" 
                                         src={{song_list.0.url}}
+                                        onload="autoResize(this)"
+                                        style="width:107%;"
                                         frameborder="0" 
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                         allowfullscreen>
@@ -229,23 +202,20 @@
                         <hr />  
 
                         <div class="row">
-                            <div class="col-3 col-12-small"> </div>
-                            <div class="col-6 col-12-small">
+                            <div class="col-1 col-12-small"> </div>
+                            <div class="col-4 col-12-small">
                                 <form action="/mbti/question/1">{% csrf_token %}
                                     <button type="submit" class="icon fa-paper-plane-o button primary fit">다시 하기</button>
                                 </form>
                             </div>
-                            <div class="col-3 col-12-small"> </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-3 col-12-small"> </div>
-                            <div class="col-6 col-12-small">
+                            <div class="col-1 col-12-small"> </div>
+                            <div class="col-1 col-12-small"> </div>
+                            <div class="col-4 col-12-small">
                                 <form action="/home">{% csrf_token %}
-                                    <button type="submit" class="icon fa-paper-plane-o button primary fit">홈으로 이동</button>
+                                    <button type="submit" class="icon fa-home button primary fit">홈으로 이동</button>
                                 </form>
                             </div>
-                            <div class="col-3 col-12-small"> </div>
+                            <div class="col-1 col-12-small"> </div>
                         </div>
 
 					</div>
@@ -255,36 +225,36 @@
     </body>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(function(){
-                //웹페이지 열면
-                $("#clickable_thumbnail_0").click(function(){
-                    $("#video").attr('src', $(this).attr('alt'));
-                    $("#video").show();
-                })
-                $("#clickable_thumbnail_1").click(function(){
-                    $("#video").attr('src', $(this).attr('alt'));
-                    $("#video").show();
-                })
-                $("#clickable_thumbnail_2").click(function(){
-                    $("#video").attr('src', $(this).attr('alt'));
-                    $("#video").show();
-                })
-                $("#clickable_thumbnail_3").click(function(){
-                    $("#video").attr('src', $(this).attr('alt'));
-                    $("#video").show();
-                })
+    <script>
+        $(document).ready(function(){
+            //웹페이지 열면
+            $("#clickable_thumbnail_0").click(function(){
+                $("#video").attr('src', $(this).attr('alt'));
+                $("#video").show();
             })
+            $("#clickable_thumbnail_1").click(function(){
+                $("#video").attr('src', $(this).attr('alt'));
+                $("#video").show();
+            })
+            $("#clickable_thumbnail_2").click(function(){
+                $("#video").attr('src', $(this).attr('alt'));
+                $("#video").show();
+            })
+            $("#clickable_thumbnail_3").click(function(){
+                $("#video").attr('src', $(this).attr('alt'));
+                $("#video").show();
+            })
+        })
 
-            moveScrollRight = function(){
-                var _scrollX = $('#match_artist_list').scrollLeft();
-                $('#match_artist_list').animate({ scrollLeft: _scrollX + 980}, 1000);
-            }
-            moveScrollLeft = function(){
-                var _scrollX = $('#match_artist_list').scrollLeft();
-                $('#match_artist_list').animate({ scrollLeft: _scrollX - 980}, 1000);
-            }
-        </script>
+        moveScrollRight = function(){
+            var _scrollX = $('#match_artist_list').scrollLeft();
+            $('#match_artist_list').animate({ scrollLeft: _scrollX + 980}, 1000);
+        }
+        moveScrollLeft = function(){
+            var _scrollX = $('#match_artist_list').scrollLeft();
+            $('#match_artist_list').animate({ scrollLeft: _scrollX - 980}, 1000);
+        }
+    </script>
 </html>
 
 
