@@ -211,8 +211,9 @@
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-4 col-12-small">
-                                <form action="/home">{% csrf_token %}
+                                <form action="/home" method="GET">{% csrf_token %}
                                     <button type="submit" class="icon fa-home button primary fit">홈으로 이동</button>
+                                    <input type="hidden" id="mbti_result" name="mbti_result" value="mbti"></input>
                                 </form>
                             </div>
                             <div class="col-1 col-12-small"> </div>
