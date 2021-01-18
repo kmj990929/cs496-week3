@@ -16,6 +16,10 @@
             #page {
                 font-family: 'Jal_Onuel';
             }
+
+            #jungin{
+                margin-bottom:5.5px;
+            }
         </style>
     </head>
     <body>
@@ -31,7 +35,7 @@
         <!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/mbti">Home</a></li>
+					<li><a href="/mbti">Main</a></li>
 					<li><a href="/login">Login</a></li>
 				</ul>
 			</nav>
@@ -45,16 +49,27 @@
 			<section id="main" class="wrapper">
 				<div class="inner">
 					<div id="page" class="content">
-						<form action="/login/signup/success" method="GET">{% csrf_token %}
-                            <div class="input-group">
-                                <input type="text" name="userName" id="userContent" placeholder="Name">
-                                <input type="text" name="userID" id="userContent" placeholder="ID">
-                                <input type="password" name="userPW" id="userContent" placeholder="Password">
-                                <span class="input-group-btn">
-                                    <button class="button primary small" type="submit" id="signup_submit_btn">완료</button>
-                                </span>
+
+                        <h2 align="center">회원가입</h2>
+
+                        <div class="row" style="margin-bottom:-40px;">
+                            <div class="col-3 col-12-small">
                             </div>
-                        </form>
+                            <div class="col-6 col-12-small">
+                                <form action="/login/signup/success" method="GET">{% csrf_token %}
+                                    <div class="input-group">
+                                        <input id="jungin" type="text" name="userName" id="userContent" placeholder="Name">
+                                        <input id="jungin" type="text" name="userID" id="userContent" placeholder="ID">
+                                        <input id="jungin" type="password" name="userPW" id="userContent" placeholder="Password">
+                                        <span class="input-group-btn">
+                                            <button class="button primary fit" type="submit" id="signup_submit_btn">완료</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-3 col-12-small">
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</section>

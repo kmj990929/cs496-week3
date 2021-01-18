@@ -41,6 +41,9 @@
                 width: 30%; /* Could be more or less, depending on screen size */                          
             }
 
+            #jungin{
+                margin-bottom:5.5px;
+            }
         </style>
     </head>
     <body>
@@ -56,7 +59,7 @@
         <!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/mbti">Home</a></li>
+					<li><a href="/mbti">Main</a></li>
 					<li><a href="/login">Login</a></li>
 				</ul>
 			</nav>
@@ -71,23 +74,38 @@
 				<div class="inner">
 					<div id="page" class="content">
 
-                        <div class="row">
-                            <div class="col-8 col-12-small">
+                    <h2 align="center">로그인</h2>
+
+                        <div class="row" style="margin-bottom:-40px;">
+                            <div class="col-3 col-12-small">
+                            </div>
+                            <div class="col-6 col-12-small">
                                 <form action="/login/success" method="GET">{% csrf_token %}
-                                    <div class="input-group"> 
-                                        <input type="text" name="userID" id="userContent" placeholder="ID">
-                                        <input type="password" name="userPW" id="userContent" placeholder="Password">
+                                    <div class="input-group">
+                                        <input id="jungin" type="text" name="userID" id="userContent" placeholder="ID">
+                                        <input id="jungin" type="password" name="userPW" id="userContent" placeholder="Password">
                                         <span class="input-group-btn">
-                                            <button class="button primary small" type="submit" id="login_btn">Login</button>
+                                            <button class="button primary fit" type="submit" id="login_btn">Login</button>
                                         </span>
                                     </div>
                                 </form>
                             </div>
+                            <div class="col-3 col-12-small">
+                            </div>
+                        </div>
 
-                            <div class="col-4 col-12-small">
+                        <hr />
+
+                        <div class="row" style="margin-top:-5px;">
+                            <div class="col-3 col-12-small">
+                            </div>
+                            <div class="col-6 col-12-small">
                                 <form action='/login/signup'>
-                                    <button class="button primary small" type="submit" id="signup_btn">SignUp</button>
+                                    <button class="button fit" type="submit" id="signup_btn">SignUp</button>
                                 </form>
+                            </div>
+                            </div>
+                            <div class="col-3 col-12-small">
                             </div>
                         </div>
 
