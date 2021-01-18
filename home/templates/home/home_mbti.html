@@ -43,7 +43,7 @@
         <!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="/mbti">Home</a></li>
+					<li><a href="/mbti">Main</a></li>
 					<li><a href="/login">Login</a></li>
 				</ul>
 			</nav>
@@ -69,6 +69,12 @@
                         <form action='/login'>
                             <button class="button primary small" type="submit" id="logout_btn">로그아웃</button>
                         </form>
+
+                        <hr />
+                        <h2>{{userName}} 님에게 추천하는 음악</h2>
+                        {% for artist in artist_list%}
+                        <p>{{artist}}</p>
+                        {% endfor %}
 					</div>
 				</div>
 			</section>

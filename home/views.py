@@ -19,9 +19,9 @@ def index(request):
             user.save()
             print(estimateArtistOnly(user.mbti))
 
-            settingPersona(user, True)
+            persona = settingPersona(user, True)
 
-            content = {'userName':userName, 'mbti': mbti}
+            content = {'userName':userName, 'mbti': mbti, 'artist_list':persona.artist}
             return render(request, 'home/home_mbti.html', content)
         except:
             if (user.mbti != ""):
@@ -29,9 +29,9 @@ def index(request):
                 # mbti setting
                 mbti = ast.literal_eval(user.mbti)
 
-                settingPersona(user, False)
+                persona = settingPersona(user, False)
 
-                content = {'userName':userName, 'mbti' : mbti}
+                content = {'userName':userName, 'mbti' : mbti, 'artist_list':persona.artist}
                 return render(request, 'home/home_mbti.html', content)
             else:
                 # 아직 mbti 결과가 없는 경우
@@ -46,17 +46,21 @@ def settingPersona(user, resetMbti):
     userID = user.userID
     if (len(Persona.objects.filter(userID = userID))!= 0):
         #이미 persona 존재
+        persona = Persona.objects.filter(userID = userID)[0]
         if (resetMbti):
             #artist 목록 추가
-            persona = Persona.objects.filter(userID = userID)[0]
             persona.mbti = user.mbti
             origin_artist_list = ast.literal_eval(persona.artist)
-            origin_artist_list.append(estimateArtistOnly(user.mbti))
-            origin_artist_list = list(set(origin_artist_list))
-            persona.artist = origin_artist_list
+            origin_artist_list += estimateArtistOnly(user.mbti)
+            artist_list = list(set(origin_artist_list))
+            persona.artist = artist_list
             persona.save()
+            return persona
+        return persona
     else:
         mbti = user.mbti
+        mbti = ast.literal_eval(mbti)
         artist = estimateArtistOnly(mbti)
         new_persona = Persona(userID = userID, mbti = mbti, artist = artist, songs = "[]", grade = "[]")
         new_persona.save()
+        return new_persona
