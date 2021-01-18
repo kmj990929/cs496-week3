@@ -64,8 +64,11 @@ def printQuestion(request, quesNum):
 
 def printResult(request):
     calc.questionCalc()
-    artist_list = calc.estimateArtist()
+    estimate = calc.estimateArtist()
+    artist_list = estimate[0]
+    mbti_list = estimate[1]
     print("artist_list", artist_list)
+    print("mbti_list", mbti_list)
     
     profile_list = []
     for person in artist_list:
