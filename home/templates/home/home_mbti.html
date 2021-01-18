@@ -83,38 +83,50 @@
             <section id="main" class="wrapper">
 				<div class="inner">
 					<div id="page" class="content">
-                        <div class="input-group" id="test_bar"> 
-                            <p>{{mbti}} 성향의 {{userName}}님!</p>
-                            <div id="test_btn">
+                        <div class="row">
+                            <div class="input-group" id="test_bar"> 
+                                <p>{{mbti}} 성향의 {{userName}}님!</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div  class="col-1 col-12-small"> </div>
+                            <div class="col-4 col-12-small">
                                 <form action='/mbti/question/1'>
-                                    <button class="button primary small" type="submit" id="login_btn">다시 검사받기</button>
+                                    <button class="button primary fit" type="submit" id="login_btn">다시 검사받기</button>
                                 </form>
                             </div>
+                            <div class="col-1 col-12-small"> </div>
+                            <div class="col-1 col-12-small"> </div>
+                            <div class="col-4 col-12-small">
+                                <form action='/login'>
+                                    <button class="button fit" type="submit" id="logout_btn">로그아웃</button>
+                                </form>
+                            </div>
+                            <div class="col-1 col-12-small"> </div>
                         </div>
-
-
-                        <form action='/login'>
-                            <button class="button primary small" type="submit" id="logout_btn">로그아웃</button>
-                        </form>
 
                         <hr />
+
                         <h2>{{userName}} 님에게 추천하는 음악</h2>
                         {% for song in song_list%}
-                        <p>{{song.0.artist}}</p>
-                        <div id = "persona_song_list">
-                            <div id="song_item">
+                        <p style="margin-top:20px;margin-bottom:3px;">{{song.0.artist}}</p>
+                        <div id = "persona_song_list" class="row">
+                            <div id="song_item" class="col-2 col-12-small">
                                 <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{song.0.thumbnail}} alt={{song.0.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
-                            <div id="song_item">
+                            <div id="song_item" class="col-2 col-12-small">
                                 <img class="clickable_thumbnail" id="clickable_thumbnail_1" src={{song.1.thumbnail}} alt={{song.1.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
-                            <div id="song_item">
+                            <div id="song_item" class="col-2 col-12-small">
                                 <img class="clickable_thumbnail" id="clickable_thumbnail_2" src={{song.2.thumbnail}} alt={{song.2.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
-                            <div id="song_item">
+                            <div id="song_item" class="col-2 col-12-small">
                                 <img class="clickable_thumbnail" id="clickable_thumbnail_3" src={{song.3.thumbnail}} alt={{song.3.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
+                            <div class="col-4 col-12-small"> </div>
                         </div>
+                        <hr />
                         {% endfor %}
 					</div>
 				</div>
@@ -127,11 +139,10 @@
                             <div class="video_box">
                                 <iframe
                                     id="video"
-                                    width="800" 
-                                    height="450" 
+                                    height="300" 
                                     src={{song_list.0.0.url}}
                                     onload="autoResize(this)"
-                                    style="width:107%;"
+                                    style="width:100%;"
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                     allowfullscreen>
