@@ -72,6 +72,7 @@
 				<ul class="links">
 					<li><a href="/mbti">Main</a></li>
 					<li><a href="/login">Logout</a></li>
+                    <li><a href="/home/playlist">Playlist</a></li>
 				</ul>
 			</nav>
 
@@ -103,7 +104,7 @@
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-4 col-12-small">
-                                <button class="button fit" type="submit" id="logout_btn" onclick="modalopen();">노래 추천</button>
+                                <button class="button fit" type="submit" id="logout_btn" onclick="modalopen();">친구와 함께 들을 노래 추천</button>
                             </div>
                             <div class="col-1 col-12-small"> </div>
                         </div>
@@ -153,7 +154,7 @@
                         </div>
 
                         <div style="cursor:pointer; text-align: center; padding-bottom: 10px; padding-top: 10px;">
-                            <button>좋아요</button>
+                            <button id="good_song" onClick="good_song_btn();">좋아요</button>
                         </div>
 
                         <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
@@ -176,6 +177,11 @@
                         <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="submit_id();">
                             <span class="pop_bt" style="font-size: 13pt;" >
                                 제출
+                            </span>
+                        </div>
+                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_music_modal();">
+                            <span class="pop_bt" style="font-size: 13pt;" >
+                                닫기
                             </span>
                         </div>
                 </div>
@@ -215,18 +221,30 @@
         $(".clickable_thumbnail").click(function(){
             $("#video").attr('src', $(this).attr('alt'));
             $("#myModal").show();
+            $.ajax({
+                url: "/home/checkGoodSong",
+                data: {song: $("#video").attr("src")},
+                type: "GET",
+                success: function(data) {
+                    if (data["check"] == True) {
+                        $("#good_song").checked = true;
+                    }
+                    else {
+                        $("#good_song").checked = false;
+                    }
+                }
+            })
         })
         function modalopen(flag) {
             $('#musicModal').show();
         }
         function submit_id(flag) {
-            $('#musicModal').hide();
             $.ajax({
                 url: "/home/sharedmusic",
                 data: {id: $("#other_user_id").val()},
                 type: "GET",
                 success: function(data) {
-                    document.getElementById("together_title").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 가능성이 높아요!"
+                    document.getElementById("together_title").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 수 있을 거예요!"
                     document.getElementById("together_content").innerHTML = data["intersection"]
                     $('#resultModal').show();
                 }
@@ -234,6 +252,19 @@
         }
         function close_result_pop(flag) {
              $('#resultModal').hide();
+             $('#musicModal').hide();
+        };
+        function close_music_modal(flag) {
+             $('#musicModal').hide();
+        };
+        function good_song_btn(flag) {
+             $.ajax({
+                url: "/home/goodSong",
+                data: {song: $("#video").attr("src")},
+                type: "GET",
+                success: function(data) {
+                }
+            })
         };
     </script>
 

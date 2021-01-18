@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" type="text/css" href="/static/main.css" />
+
+        <style>
+            @font-face {
+                font-family: 'Jal_Onuel';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+            #page {
+                font-family: 'Jal_Onuel';
+            }
+
+            #test_bar {
+                display: flex;
+                justify-content: flex-start;
+                font-size : 30px;
+            }
+            #test_btn {
+                font-size : 30px;
+                margin-left: 30px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <!-- Header -->
+            <header id="header">
+                <a class="logo" href="/mbti">MBTMI</a>
+                <nav>
+					<a href="#menu">Menu</a>
+				</nav>
+            </header>
+
+        <!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/mbti">Main</a></li>
+					<li><a href="/login">Logout</a></li>
+				</ul>
+			</nav>
+
+        <!-- Heading -->
+			<div id="heading" >
+				<h1 id="page"><strong>{{userName}}님의 Home Page</strong></h1>
+			</div>
+
+            <section id="main" class="wrapper">
+				<div class="inner">
+					<div id="page" class="content">
+                        <div id="player">
+                            <iframe
+                                id="video"
+                                width="800" 
+                                height="450" 
+                                onload="autoResize(this)"
+                                style="width:107%;"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+					</div>
+				</div>
+			</section>
+
+
+
+    </body>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      //videoID = videoIds[Math.floor(Math.random() * videoIds.length)];
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '360',
+          width: '640',
+          videoId: 'iMPUsHbaXLw',
+          events: {
+            'onReady': onPlayerReady
+            //,'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+
+    <!-- Scripts -->
+			<script src="/static/jquery.min.js"></script>
+			<script src="/static/browser.min.js"></script>
+			<script src="/static/breakpoints.min.js"></script>
+			<script src="/static/util.js"></script>
+			<script src="/static/main.js"></script>
+
+</html>
