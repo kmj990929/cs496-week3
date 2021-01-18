@@ -118,6 +118,8 @@ def estimateArtist():
     global extrovert
     global realistic
     personalityList = [highSelfEsteem, ideal, active, patient, comfortable, hardworking, extrovert, realistic, -highSelfEsteem, -ideal, -active, -patient, -comfortable, -hardworking, -extrovert, -realistic]
+    personalityListKor1 = ["자존심이 강하고", "창의적이고", "활발하고", "인내심이 강하고", "마음이 안정되어 있고", "부지런하고", "외향적이고", "이성적이고", "자존심이 강하지 않고", "현실적이고", "얌전하고", "참을성이 부족하고", "조급하고", "게으르고", "내향적이고", "감성적이고"]
+    personalityListKor2 = ["자존심이 강한", "창의적인", "활발힌", "인내심이 강한", "마음이 안정되어 있는", "부지런한", "외향적인", "이성적인", "자존심이 강하지 않은", "현실적인", "얌전한", "참을성이 부족힌", "조급힌", "게으른", "내향적인", "감성적인"]
     
     print("lsit1", personalityList)
     firstPersonality = personalityList.index(max(personalityList))
@@ -135,27 +137,31 @@ def estimateArtist():
     print("3rd", str(thirdPersonality))
 
     if len(result) != 0:
-        return result
+        realResult = [result, [personalityListKor1[firstPersonality], personalityListKor1[secondPersonality], personalityListKor2[thirdPersonality]]]
+        return realResult
     else:
         # 첫번째 특징과 두번째 특징으로만
         personalitySet = set(personalityArtist[firstPersonality]) & set(personalityArtist[secondPersonality])
         result = list(personalitySet)
         if len(result) != 0:
-            return result
+            realResult = [result, [personalityListKor1[firstPersonality], personalityListKor1[secondPersonality], personalityListKor2[thirdPersonality]]]
+            return realResult
         else:
             # 첫번째 특징과 세번째 특징으로만
             personalitySet = set(personalityArtist[firstPersonality]) & set(personalityArtist[thirdPersonality])
             result = list(personalitySet)
             if len(result) != 0:
-                return result
+                realResult = [result, [personalityListKor1[firstPersonality], personalityListKor1[secondPersonality], personalityListKor2[thirdPersonality]]]
+                return realResult
             else:
                 # 두번째 특징과 세번째 특징으로만
                 personalitySet = set(personalityArtist[secondPersonality]) & set(personalityArtist[thirdPersonality])
                 result = list(personalitySet)
                 if len(result) != 0:
-                    return result
+                    realResult = [result, [personalityListKor1[firstPersonality], personalityListKor1[secondPersonality], personalityListKor2[thirdPersonality]]]
+                    return realResult
                     
-    return ["아이유"]
+    return [["아이유"], [personalityListKor1[firstPersonality], personalityListKor1[secondPersonality], personalityListKor2[thirdPersonality]]]
 
 def questionCalc():
     global highSelfEsteem
