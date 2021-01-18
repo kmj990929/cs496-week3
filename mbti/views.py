@@ -18,7 +18,12 @@ import ast
 
 
 def index(request):
-    return render(request, 'mbti/index.html')
+    userName = request.session.get('userName')
+    if userName:
+        content = {'status' : "Logout"}
+    else:
+        content = {'status' : "Login"}
+    return render(request, 'mbti/index.html', content)
 
 
 
@@ -57,7 +62,11 @@ def printQuestion(request, quesNum):
         ques = question_list[num-1]
         num += 1
 
-    context = {'number' : num, 'question' : ques}
+    userName = request.session.get('userName')
+    if userName:
+        context = {'number' : num, 'question' : ques, 'status' : "Logout"}
+    else:
+        context = {'number' : num, 'question' : ques, 'status' : "Login"}
     return render(request, 'mbti/question.html', context)
 
 
@@ -88,7 +97,11 @@ def printResult(request):
 
     song_all = Song.objects.filter(artist = artist)
 
-    content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, "mbti_list": mbti_list}
+    userName = request.session.get('userName')
+    if userName:
+        content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, "mbti_list": mbti_list, 'status' : "Logout"}
+    else:
+        context = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, "mbti_list": mbti_list, 'status' : "Login"}
 
     return render(request, 'mbti/result.html', content)
 
@@ -114,7 +127,11 @@ def printMatching(request, matching):
     mbti_list = request.GET['mbti_list_string']
     mbti_list = ast.literal_eval(mbti_list)
 
-    content = {'match_artist': matching, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, 'mbti_list': mbti_list}
+    userName = request.session.get('userName')
+    if userName:
+        content = {'match_artist': matching, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, 'mbti_list': mbti_list, 'status' : "Logout"}
+    else:
+        content = {'match_artist': matching, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, 'mbti_list': mbti_list, 'status' : "Login"}
     return render(request, 'mbti/result.html', content)
 
 
