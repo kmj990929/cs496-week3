@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+        <script src="https://code.jquery.com/jquery-latest.js"></script> 
 		<link rel="stylesheet" type="text/css" href="/static/main.css" />
 
         <style>
@@ -26,6 +27,32 @@
             #test_btn {
                 font-size : 30px;
                 margin-left: 30px;
+            }
+            #persona_song_list {
+                display: flex;
+                justify-content: flex-start;
+            }
+
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+    
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 30%; /* Could be more or less, depending on screen size */                          
             }
 
         </style>
@@ -72,16 +99,72 @@
 
                         <hr />
                         <h2>{{userName}} 님에게 추천하는 음악</h2>
-                        {% for artist in artist_list%}
-                        <p>{{artist}}</p>
+                        {% for song in song_list%}
+                        <p>{{song.0.artist}}</p>
+                        <div id = "persona_song_list">
+                            <div id="song_item">
+                                <img id="clickable_thumbnail_0" src={{song.0.thumbnail}} alt={{song.0.url}} width="180" height="100" onClick="open_pop();"> </img>
+                            </div>
+                            <div id="song_item">
+                                <img id="clickable_thumbnail_1" src={{song.1.thumbnail}} alt={{song.1.url}} width="180" height="100" onClick="open_pop();"> </img>
+                            </div>
+                            <div id="song_item">
+                                <img id="clickable_thumbnail_2" src={{song.2.thumbnail}} alt={{song.2.url}} width="180" height="100" onClick="open_pop();"> </img>
+                            </div>
+                            <div id="song_item">
+                                <img id="clickable_thumbnail_3" src={{song.3.thumbnail}} alt={{song.3.url}} width="180" height="100" onClick="open_pop();"> </img>
+                            </div>
+                        </div>
                         {% endfor %}
 					</div>
 				</div>
 			</section>
 
-
-
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div id="page" class="modal-content">
+                            <div class="left_box col-12-small">
+                                <div class="video_box">
+                                    <iframe
+                                        id="video"
+                                        width="800" 
+                                        height="450" 
+                                        src={{song_list.0.0.url}}
+                                        onload="autoResize(this)"
+                                        style="width:107%;"
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                            <p><br /></p>
+                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                            <span class="pop_bt" style="font-size: 13pt;" >
+                                닫기
+                            </span>
+                        </div>
+                </div>
+            </div>
     </body>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('#myModal').hide();
+        });
+        //팝업 Close 기능
+        function close_pop(flag) {
+             $('#myModal').hide();
+        };
+        function open_pop(flag) {
+            $("#video").attr('src', $(this).attr('alt'));
+            $('#myModal').show();
+        }
+         $("#clickable_thumbnail_2").click(function(){
+            $("#video").attr('src', $(this).attr('alt'));
+            $("#myModal").show();
+        })
+    </script>
 
     <!-- Scripts -->
 			<script src="/static/jquery.min.js"></script>
