@@ -85,7 +85,11 @@
 					<div id="page" class="content">
                         <div class="row">
                             <div class="input-group" id="test_bar"> 
-                                <p>{{mbti}} 성향의 {{userName}}님!</p>
+                                {% for elem in mbti%}
+                                <p>{{elem}}&#160</p>
+                                {% endfor %}
+                                <p>성향의 {{userName}}님!</p>
+
                             </div>
                         </div>
 
@@ -99,9 +103,7 @@
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-4 col-12-small">
-                                <form action='/login'>
-                                    <button class="button fit" type="submit" id="logout_btn">로그아웃</button>
-                                </form>
+                                <button class="button fit" type="submit" id="logout_btn" onclick="modalopen();">노래 추천</button>
                             </div>
                             <div class="col-1 col-12-small"> </div>
                         </div>
@@ -161,11 +163,46 @@
                         </div>
                 </div>
             </div>
+
+            <div id="musicModal" class="modal">
+                <!-- Modal content -->
+                <div id="page" class="modal-content">
+                            <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">노래 추천</span></b></span></p>
+                            <p style="text-align: center; line-height: 1.5;"><br /></p>
+                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;">함께 추천받고 싶은 user의 id를 입력해주세요.</span></p>
+                            <input type="text" id="other_user_id" placeholder="상대방의 ID">
+                            <p style="text-align: center; line-height: 0;"><br /></p>
+                            <p><br /></p>
+                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="submit_id();">
+                            <span class="pop_bt" style="font-size: 13pt;" >
+                                제출
+                            </span>
+                        </div>
+                </div>
+            </div>
+
+            <div id="resultModal" class="modal">
+                <!-- Modal content -->
+                <div id="page" class="modal-content">
+                            <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">{{other}} 님과 함께 들을만한 노래</span></b></span></p>
+                            <p style="text-align: center; line-height: 1.5;"><br /></p>
+                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_title"></p></span></p>
+                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content"></p></span><br /></p>
+                            <p><br /></p>
+                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_result_pop();">
+                            <span class="pop_bt" style="font-size: 13pt;" >
+                                닫기
+                            </span>
+                        </div>
+                </div>
+            </div>
     </body>
 
     <script type="text/javascript">
         jQuery(document).ready(function() {
             $('#myModal').hide();
+            $('#musicModal').hide();
+            $("#resultModal").hide();
         });
         //팝업 Close 기능
         function close_pop(flag) {
@@ -179,6 +216,25 @@
             $("#video").attr('src', $(this).attr('alt'));
             $("#myModal").show();
         })
+        function modalopen(flag) {
+            $('#musicModal').show();
+        }
+        function submit_id(flag) {
+            $('#musicModal').hide();
+            $.ajax({
+                url: "/home/sharedmusic",
+                data: {id: $("#other_user_id").val()},
+                type: "GET",
+                success: function(data) {
+                    document.getElementById("together_title").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 가능성이 높아요!"
+                    document.getElementById("together_content").innerHTML = data["intersection"]
+                    $('#resultModal').show();
+                }
+            })
+        }
+        function close_result_pop(flag) {
+             $('#resultModal').hide();
+        };
     </script>
 
     <!-- Scripts -->

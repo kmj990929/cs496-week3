@@ -5,6 +5,9 @@ from mbti.calc import *
 import ast
 from .models import *
 from mbti.models import *
+from mbti.views import *
+import simplejson as json
+
 
 # Create your views here.
 def index(request):
@@ -82,7 +85,48 @@ def settingSongList(artist_list):
     for artist in artist_list:
         result = []
         song_list = Song.objects.filter(artist = artist)
+        if (len(song_list) == 0):
+            makeSongs(artist)
+        song_list = Song.objects.filter(artist = artist)
         for song in song_list:
             result.append(song)
         result_list.append(result)
     return result_list
+
+def matchingTogether(request, other):
+    userName = request.session.get('userName')
+    otherUser = User.objects.filter(userID = other)
+    if (len(otherUser) == 0) :
+        resultMessage = other + "라는 ID의 회원이 존재하지 않습니다."
+        result = [False, resultMessage]
+        return result
+    otherPersona = Persona.objects.filter(userID = other)
+    if (len(otherPersona) == 0) :
+        resultMessage = other + "님께서 성향검사를 하지 않으셨습니다."
+        result = [False, resultMessage]
+        return result
+    else:
+        others = otherPersona[0]
+        userID = User.objects.filter(userName = userName)[0].userID
+        users = Persona.objects.filter(userID = userID)[0]
+        users_artist = users.artist
+        others_artist = others.artist
+        if (type(users_artist) == str) :
+            users_artist = ast.literal_eval(users_artist)
+        if (type(others_artist) == str) :
+            others_artist = ast.literal_eval(others_artist)
+        intersection = set(users_artist) & set(others_artist)
+        intersection = list(intersection)
+        result = [True, intersection]
+        return result
+
+def sharedMusic(request):
+    userName = request.session.get('userName')
+    otherUserID = request.GET.get('id')
+    result = matchingTogether(request, otherUserID)
+    if (result[0]):
+        content = {'intersection':result[1], 'other':otherUserID, 'user':userName}
+        return HttpResponse(json.dumps(content), content_type="application/json")
+    else:
+        content = {'errorMessage':result[1]}
+        return HttpResponse(json.dumps(content), content_type="application/json")
