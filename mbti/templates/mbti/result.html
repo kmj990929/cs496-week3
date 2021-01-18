@@ -125,6 +125,8 @@
 				<div class="inner">
 					<div id="page" class="content">
 
+                        <h2>{{mbti_list.0}}, {{mbti_list.1}}, {{mbti_list.2}} 당신에게는 아래의 K-POP ARTIST들을 추천드려요!</h2>
+
                         <h2>K-POP Artist</h2>
                         <div id="artist_bar" class="row">
                             <div class="col-1 col-12-small">
@@ -212,8 +214,9 @@
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-1 col-12-small"> </div>
                             <div class="col-4 col-12-small">
-                                <form action="/home">{% csrf_token %}
+                                <form action="/home" method="GET">{% csrf_token %}
                                     <button type="submit" class="icon fa-home button primary fit">홈으로 이동</button>
+                                    <input type="hidden" id="mbti_result" name="mbti_result" value="{{mbti_list}}"></input>
                                 </form>
                             </div>
                             <div class="col-1 col-12-small"> </div>

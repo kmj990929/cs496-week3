@@ -7,22 +7,19 @@ def index(request):
     userName = request.session.get('userName')
     if userName:
         user = User.objects.filter(userName = userName)[0]
-        if (user.mbti != ""):
-            print(userName, user.mbti)
-            # 이미 mbti 결과가 있는 경우
-            content = {'userName':userName, 'mbti' : user.mbti}
+        try:
+            # 방금 검사 결과 받아온 경우
+            mbti = request.GET['mbti_result']
+            user.mbti = mbti
+            user.save()
+            content = {'userName':userName, 'mbti': user.mbti}
             return render(request, 'home/home_mbti.html', content)
-        else:
-            try:
-                mbti = request.GET['mbti_result']
-                print("mbti")
-                # 방금 검사 결과 받아온 경우
-                user.mbti = mbti
-                user.save()
-                content = {'userName':userName, 'mbti': user.mbti}
+        except:
+            if (user.mbti != ""):
+                # 이미 mbti 결과가 있는 경우
+                content = {'userName':userName, 'mbti' : user.mbti}
                 return render(request, 'home/home_mbti.html', content)
-            except:
-                print("no-mbti")
+            else:
                 # 아직 mbti 결과가 없는 경우
                 content = {'userName':userName}
                 return render(request, 'home/home_nombti.html', content)
