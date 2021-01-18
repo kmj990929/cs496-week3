@@ -103,16 +103,16 @@
                         <p>{{song.0.artist}}</p>
                         <div id = "persona_song_list">
                             <div id="song_item">
-                                <img id="clickable_thumbnail_0" src={{song.0.thumbnail}} alt={{song.0.url}} width="180" height="100" onClick="open_pop();"> </img>
+                                <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{song.0.thumbnail}} alt={{song.0.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
                             <div id="song_item">
-                                <img id="clickable_thumbnail_1" src={{song.1.thumbnail}} alt={{song.1.url}} width="180" height="100" onClick="open_pop();"> </img>
+                                <img class="clickable_thumbnail" id="clickable_thumbnail_1" src={{song.1.thumbnail}} alt={{song.1.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
                             <div id="song_item">
-                                <img id="clickable_thumbnail_2" src={{song.2.thumbnail}} alt={{song.2.url}} width="180" height="100" onClick="open_pop();"> </img>
+                                <img class="clickable_thumbnail" id="clickable_thumbnail_2" src={{song.2.thumbnail}} alt={{song.2.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
                             <div id="song_item">
-                                <img id="clickable_thumbnail_3" src={{song.3.thumbnail}} alt={{song.3.url}} width="180" height="100" onClick="open_pop();"> </img>
+                                <img class="clickable_thumbnail" id="clickable_thumbnail_3" src={{song.3.thumbnail}} alt={{song.3.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
                         </div>
                         {% endfor %}
@@ -160,7 +160,11 @@
             $("#video").attr('src', $(this).attr('alt'));
             $('#myModal').show();
         }
-         $("#clickable_thumbnail_2").click(function(){
+        $("#clickable_thumbnail_2").click(function(){
+            $("#video").attr('src', $(this).attr('alt'));
+            $("#myModal").show();
+        })
+        $(".clickable_thumbnail").click(function(){
             $("#video").attr('src', $(this).attr('alt'));
             $("#myModal").show();
         })
