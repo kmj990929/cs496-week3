@@ -167,8 +167,9 @@
                         </div>
                     </div>
 
+                    <!--좋아요-->
                     <div style="cursor:pointer; text-align: center; padding-bottom: 10px; padding-top: 10px;">
-                        <button id="good_song" onClick="good_song_btn();">좋아요</button>
+                        <button id="good_song" class="button" onClick="good_song_btn();">좋아요</button>
                     </div>
 
                     <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
@@ -227,10 +228,6 @@
         function close_pop(flag) {
              $('#myModal').hide();
         };
-        function open_pop(flag) {
-            $("#video").attr('src', $(this).attr('alt'));
-            $('#myModal').show();
-        }
         $(".clickable_thumbnail").click(function(){
             $("#video").attr('src', $(this).attr('alt'));
             $("#myModal").show();
@@ -239,11 +236,11 @@
                 data: {song: $("#video").attr("src")},
                 type: "GET",
                 success: function(data) {
-                    if (data["check"] == True) {
-                        $("#good_song").checked = true;
+                    if (data["check"] == true) {
+                        $("#good_song").attr('class', "button primary");
                     }
                     else {
-                        $("#good_song").checked = false;
+                        $("#good_song").attr('class', "button");
                     }
                 }
             })
@@ -281,9 +278,15 @@
         function good_song_btn(flag) {
              $.ajax({
                 url: "/home/goodSong",
-                data: {song: $("#video").attr("src")},
+                data: {song: $("#video").attr("src"), status: $("#good_song").attr("class")},
                 type: "GET",
                 success: function(data) {
+                    if (data["click"] == true) {
+                        $("#good_song").attr('class', "button primary");
+                    } else {
+                        $("#good_song").attr('class', "button");
+                    }
+
                 }
             })
         };

@@ -139,16 +139,36 @@ def sharedMusic(request):
 def goodSong(request):
     userName = request.session.get('userName')
     song_url = request.GET.get('song')
-    good_song = Song.objects.filter(url = song_url)[0]
-    userID = User.objects.filter(userName = userName)[0].userID
-    userPersona = Persona.objects.filter(userID = userID)[0]
-    good_song_list = userPersona.songs
-    if (type(good_song_list) == str) :
-        good_song_list = ast.literal_eval(good_song_list)
-    good_song_list.append(good_song.title)
-    userPersona.songs = good_song_list
-    userPersona.save()
-    content = {'success':True}
+    status = request.GET.get('status')
+    
+    #non클릭 상태이면
+    if (status == "button"):
+        good_song = Song.objects.filter(url = song_url)[0]
+        userID = User.objects.filter(userName = userName)[0].userID
+        userPersona = Persona.objects.filter(userID = userID)[0]
+        good_song_list = userPersona.songs
+        if (type(good_song_list) == str) :
+            good_song_list = ast.literal_eval(good_song_list)
+        good_song_list.append(good_song.title)
+        userPersona.songs = good_song_list
+        userPersona.save()
+
+        content = {'click': True}
+
+    #클릭 상태이면
+    if (status == "button primary"):
+        good_song = Song.objects.filter(url = song_url)[0]
+        userID = User.objects.filter(userName = userName)[0].userID
+        userPersona = Persona.objects.filter(userID = userID)[0]
+        good_song_list = userPersona.songs
+        if (type(good_song_list) == str) :
+            good_song_list = ast.literal_eval(good_song_list)
+        good_song_list.remove(good_song.title)
+        userPersona.songs = good_song_list
+        userPersona.save()
+
+        content = {'click': False}
+
     return HttpResponse(json.dumps(content), content_type="application/json")
 
 def checkGoodSong(request):
@@ -165,7 +185,7 @@ def checkGoodSong(request):
         content = {'check':True}
         return HttpResponse(json.dumps(content), content_type="application/json")
     else :
-        content = {'check':True}
+        content = {'check':False}
         return HttpResponse(json.dumps(content), content_type="application/json")
 
 def playlist(request):
