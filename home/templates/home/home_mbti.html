@@ -112,15 +112,17 @@
 
                         <hr />
 
-                        <h2>{{userName}} 님과 같은 성향의 사람들이 좋아하는 음악</h2>
-                        <div id = "persona_song_list" class="row">
-                            {% for mbti_song in same_mbti_songs%}
-                            <div id="song_item" class="col-2 col-12-small">
-                                <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{mbti_song.thumbnail}} alt={{mbti_song.url}} width="180" height="100" onClick="open_pop();"> </img>
+                        <div id="same_mbti_tap">
+                            <h2>{{userName}} 님과 같은 성향의 사람들이 좋아하는 음악</h2>
+                            <div id = "persona_song_list" class="row">
+                                {% for mbti_song in same_mbti_songs%}
+                                <div id="song_item" class="col-2 col-12-small">
+                                    <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{mbti_song.thumbnail}} alt={{mbti_song.url}} width="180" height="100" onClick="open_pop();"> </img>
+                                </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
+                            <hr />
                         </div>
-                        <hr />
 
                         <h2>{{userName}} 님에게 추천하는 음악</h2>
                         {% for song in song_list%}
@@ -223,6 +225,9 @@
             $('#myModal').hide();
             $('#musicModal').hide();
             $("#resultModal").hide();
+            if ({{same_mbti_songs}}.length == 0) {
+                $("#same_mbti_tap").hide();
+            }
         });
         //팝업 Close 기능
         function close_pop(flag) {
