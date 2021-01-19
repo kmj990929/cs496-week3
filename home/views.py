@@ -164,4 +164,10 @@ def checkGoodSong(request):
         return HttpResponse(json.dumps(content), content_type="application/json")
 
 def playlist(request):
-    return render(request, 'home/playlist.html')
+    userName = request.session.get('userName')
+    userID = User.objects.filter(userName = userName)[0].userID
+    playlist = Persona.objects.filter(userID = userID)[0].songs
+    if (type(playlist) == str) :
+        playlist = ast.literal_eval(playlist)
+    content = {'playlist':playlist}
+    return render(request, 'home/playlist.html', content)

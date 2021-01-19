@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="ko">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<link rel="stylesheet" type="text/css" href="/static/main.css" />
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <link rel="stylesheet" type="text/css" href="/static/main.css" />
 
         <style>
             @font-face {
@@ -32,48 +32,52 @@
     </head>
     <body>
 
-        <!-- Header -->
-            <header id="header">
-                <a class="logo" href="/mbti">MBTMI</a>
-                <nav>
-					<a href="#menu">Menu</a>
-				</nav>
-            </header>
+      <!-- Header -->
+        <header id="header">
+          <a class="logo" href="/mbti">MBTMI</a>
+            <nav>
+              <a href="#menu">Menu</a>
+            </nav>
+        </header>
 
-        <!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="/mbti">Main</a></li>
-                    <li><a href="/home">Home</a></li>
-					<li><a href="/login">Logout</a></li>
-				</ul>
-			</nav>
+      <!-- Nav -->
+        <nav id="menu">
+          <ul class="links">
+            <li><a href="/mbti">Main</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/login">Logout</a></li>
+          </ul>
+        </nav>
 
-        <!-- Heading -->
-			<div id="heading" >
-				<h1 id="page"><strong>{{userName}}님의 Home Page</strong></h1>
-			</div>
+      <!-- Heading -->
+        <div id="heading" >
+          <h1 id="page"><strong>{{userName}}님의 Home Page</strong></h1>
+        </div>
 
-            <section id="main" class="wrapper">
-				<div class="inner">
-					<div id="page" class="content">
-                        <div id="player">
-                            <iframe
-                                id="video"
-                                width="800" 
-                                height="450" 
-                                onload="autoResize(this)"
-                                style="width:107%;"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-					</div>
-				</div>
-			</section>
-
-
+        <section id="main" class="wrapper">
+          <div class="inner">
+            <div id="page" class="content">
+            
+              <div class="row">
+                <div class="col-2 col-12-small"> </div>
+                <div class="col-8 col-12-small">
+                  <div id="player">
+                    <iframe
+                        id="video"
+                        width="100%" 
+                        height="450" 
+                        onload="autoResize(this)"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                  </div>
+                </div>
+                <div class="col-2 col-12-small"> </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
     </body>
 
@@ -85,6 +89,7 @@
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+     // {{playlist}}
       //videoID = videoIds[Math.floor(Math.random() * videoIds.length)];
 
       // 3. This function creates an <iframe> (and YouTube player)
@@ -92,8 +97,8 @@
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '360',
-          width: '640',
+          width: '100%',
+          height: '450',
           videoId: 'iMPUsHbaXLw',
           events: {
             'onReady': onPlayerReady
