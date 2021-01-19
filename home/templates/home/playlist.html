@@ -134,7 +134,7 @@
       function onPlayerStateChange(event) {
         // 현재 동영상 재생 종료됬을 경우
         if (event.data == YT.PlayerState.ENDED) {
-          setTimeout(onPlayerStateChange_excute, 1000); 
+          setTimeout(onPlayerStateChange_excute, 0); 
         }
       }
       function onPlayerStateChange_excute() {
