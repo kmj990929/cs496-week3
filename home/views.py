@@ -7,7 +7,7 @@ from .models import *
 from mbti.models import *
 from mbti.views import *
 import simplejson as json
-
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -128,8 +128,9 @@ def sharedMusic(request):
         content = {'intersection':result[1], 'other':otherUserID, 'user':userName}
         return HttpResponse(json.dumps(content), content_type="application/json")
     else:
-        content = {'errorMessage':result[1]}
-        return HttpResponse(json.dumps(content), content_type="application/json")
+        response = JsonResponse({"error": result[1]})
+        response.status_code = 403
+        return response
 
 def goodSong(request):
     userName = request.session.get('userName')
