@@ -171,3 +171,19 @@ def playlist(request):
         playlist = ast.literal_eval(playlist)
     content = {'playlist':playlist}
     return render(request, 'home/playlist.html', content)
+
+def deleteArtist(request):
+    userName = request.session.get('userName')
+    userID = User.objects.filter(userName = userName)[0].userID
+    persona = Persona.objects.filter(userID = userID)[0]
+    artistList = persona.artist
+    if (type(artistList) == str) :
+        artistList = ast.literal_eval(artistList)
+
+    artist = request.GET.get('artist')
+    artistList.remove(artist)
+    persona.artist = artistList
+    persona.save()
+    content = {'success':True}
+    return HttpResponse(json.dumps(content), content_type="application/json")
+
