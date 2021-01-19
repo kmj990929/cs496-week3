@@ -116,7 +116,7 @@
                         <div id = "persona_song_list" class="row">
                             {% for mbti_song in same_mbti_songs%}
                             <div id="song_item" class="col-2 col-12-small">
-                                <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{song_item.thumbnail}} alt={{song_item.url}} width="180" height="100" onClick="open_pop();"> </img>
+                                <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{mbti_song.thumbnail}} alt={{mbti_song.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
                             {% endfor %}
                         </div>

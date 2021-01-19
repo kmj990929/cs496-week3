@@ -208,8 +208,19 @@ def sameMbtiSong(request):
     sameMbti = Persona.objects.filter(mbti = mbti)
     same_mbti_songs = []
     for person in sameMbti:
+        if (person.userID == userID):
+            continue
         songList = person.songs
         if (type(songList) == str) :
             songList = ast.literal_eval(songList)
-        same_mbti_songs = same_mbti_songs + songList
-    return same_mbti_songs
+        for title in songList:
+            song = Song.objects.filter(title = title)[0]
+            same_mbti_songs.append(song)
+    song_dict = dict()
+    for same in same_mbti_songs:
+        num = same_mbti_songs.count(same)
+        song_dict[same] = num
+    song_dict = sorted(song_dict.items(), key=lambda x: x[1], reverse=True)
+    top4 = list(dict(song_dict[:4]).keys())
+
+    return top4
