@@ -169,5 +169,12 @@ def playlist(request):
     playlist = Persona.objects.filter(userID = userID)[0].songs
     if (type(playlist) == str) :
         playlist = ast.literal_eval(playlist)
-    content = {'playlist':playlist}
+
+    urlList = []
+    for title in playlist:
+        url = Song.objects.filter(title=title)[0].url
+        idx = url.index("embed/")
+        token = url[idx+6:]
+        urlList.append(token)
+    content = {'playlist':urlList}
     return render(request, 'home/playlist.html', content)
