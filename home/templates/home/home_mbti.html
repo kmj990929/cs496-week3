@@ -194,10 +194,10 @@
             <div id="resultModal" class="modal">
                 <!-- Modal content -->
                 <div id="page" class="modal-content">
-                            <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">{{other}} 님과 함께 들을만한 노래</span></b></span></p>
+                            <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;"><p id="together_title"></p></span></b></span></p>
                             <p style="text-align: center; line-height: 1.5;"><br /></p>
-                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_title"></p></span></p>
-                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content"></p></span><br /></p>
+                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content1"></p></span></p>
+                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content2"></p></span><br /></p>
                             <p><br /></p>
                         <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_result_pop();">
                             <span class="pop_bt" style="font-size: 13pt;" >
@@ -248,9 +248,13 @@
                 data: {id: $("#other_user_id").val()},
                 type: "GET",
                 success: function(data) {
-                    document.getElementById("together_title").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 수 있을 거예요!"
-                    document.getElementById("together_content").innerHTML = data["intersection"]
+                    document.getElementById("together_title").innerHTML = data["other"] + " 님과 함께 들을만한 노래"
+                    document.getElementById("together_content1").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 수 있을 거예요!"
+                    document.getElementById("together_content2").innerHTML = data["intersection"]
                     $('#resultModal').show();
+                },
+                error: function(data) {
+                    alert(data.responseJSON.error);
                 }
             })
         }
