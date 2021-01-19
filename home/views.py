@@ -182,7 +182,7 @@ def playlist(request):
         token = url[idx+6:]
         urlList += token + ","
     urlList = urlList[:-1]
-    content = {'playlist':urlList}
+    content = {'playlist':urlList, 'userName': userName}
     return render(request, 'home/playlist.html', content)
 
 def deleteArtist(request):
