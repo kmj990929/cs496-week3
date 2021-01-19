@@ -216,6 +216,22 @@ def deleteArtist(request):
     artist = request.GET.get('artist')
     artistList.remove(artist)
     persona.artist = artistList
+
+    #artist 삭제 시 해당 artist 곡의 좋아요도 삭제하기
+    songList = persona.songs
+    if (type(songList) == str) :
+        songList = ast.literal_eval(songList)
+
+    song_remove = []
+    for song_title in songList:
+        print(song_title)
+        song = Song.objects.filter(title = song_title)[0]
+        if (song.artist == artist) :
+            print("remove")
+            song_remove.append(song.title)
+    for i in song_remove:
+        songList.remove(i)
+    persona.songs = songList
     persona.save()
     content = {'success':True}
     return HttpResponse(json.dumps(content), content_type="application/json")
