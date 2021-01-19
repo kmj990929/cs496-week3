@@ -138,9 +138,9 @@
                             <div id="song_item" class="col-2 col-12-small">
                                 <img class="clickable_thumbnail" id="clickable_thumbnail_3" src={{song.3.thumbnail}} alt={{song.3.url}} width="180" height="100" onClick="open_pop();"> </img>
                             </div>
-                            <div class="col-3 col-12-small"> </div>
+                            <div class="col-2 col-12-small"> </div>
                             <div class="col-1 col-12-small">
-                                <button class="button fit icon fa-trash del_artist" alt={{song.0.artist}}></button>
+                                <button class="button small icon fa-trash del_artist" style="margin-top:30px;" alt={{song.0.artist}}>삭제</button>
                             </div>
                         </div>
                         <hr />
@@ -152,68 +152,67 @@
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div id="page" class="modal-content">
-                        <div class="left_box col-12-small">
-                            <div class="video_box">
-                                <iframe
-                                    id="video"
-                                    height="300" 
-                                    src={{song_list.0.0.url}}
-                                    onload="autoResize(this)"
-                                    style="width:100%;"
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
+                    <div class="left_box col-12-small">
+                        <div class="video_box">
+                            <iframe
+                                id="video"
+                                height="300" 
+                                src={{song_list.0.0.url}}
+                                onload="autoResize(this)"
+                                style="width:100%;"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
+                    </div>
 
-                        <div style="cursor:pointer; text-align: center; padding-bottom: 10px; padding-top: 10px;">
-                            <button id="good_song" onClick="good_song_btn();">좋아요</button>
-                        </div>
+                    <div style="cursor:pointer; text-align: center; padding-bottom: 10px; padding-top: 10px;">
+                        <button id="good_song" onClick="good_song_btn();">좋아요</button>
+                    </div>
 
-                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
-                            <span class="pop_bt" style="font-size: 13pt;" >
-                                닫기
-                            </span>
-                        </div>
+                    <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                        <span class="pop_bt" style="font-size: 13pt;" >
+                            닫기
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div id="musicModal" class="modal">
                 <!-- Modal content -->
                 <div id="page" class="modal-content">
-                            <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">노래 추천</span></b></span></p>
-                            <p style="text-align: center; line-height: 1.5;"><br /></p>
-                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;">함께 추천받고 싶은 user의 id를 입력해주세요.</span></p>
-                            <input type="text" id="other_user_id" placeholder="상대방의 ID">
-                            <p style="text-align: center; line-height: 0;"><br /></p>
-                            <p><br /></p>
-                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="submit_id();">
-                            <span class="pop_bt" style="font-size: 13pt;" >
-                                제출
-                            </span>
-                        </div>
-                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_music_modal();">
-                            <span class="pop_bt" style="font-size: 13pt;" >
-                                닫기
-                            </span>
-                        </div>
+                    <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">노래 추천</span></b></span></p>
+                    <p style="text-align: center; line-height: 1.5;"></p>
+                    <p style="text-align: center;"><span style="font-size: 14pt;">함께 추천받고 싶은 user의 id를 입력해주세요.</span></p>
+                    <input type="text" id="other_user_id" placeholder="상대방의 ID">
+                    <p><br /></p>
+                    <div class="col-6 col-12-small" style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; margin-bottom:5px" onClick="submit_id();">
+                        <span class="pop_bt" style="font-size: 13pt;" >
+                            제출
+                        </span>
+                    </div>
+                    <div class="col-6 col-12-small" style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_music_modal();">
+                        <span class="pop_bt" style="font-size: 13pt;" >
+                            닫기
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div id="resultModal" class="modal">
                 <!-- Modal content -->
                 <div id="page" class="modal-content">
-                            <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;"><p id="together_title"></p></span></b></span></p>
-                            <p style="text-align: center; line-height: 1.5;"><br /></p>
-                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content1"></p></span></p>
-                            <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content2"></p></span><br /></p>
-                            <p><br /></p>
-                        <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_result_pop();">
-                            <span class="pop_bt" style="font-size: 13pt;" >
-                                닫기
-                            </span>
-                        </div>
+                    <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;"><p id="together_title"></p></span></b></span></p>
+                    <p style="text-align: center; line-height: 1.5;"></p>
+                    <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content1"></p></span></p>
+                    <p style="text-align: center; line-height: 0;"><span style="font-size: 14pt;"><p id="together_content2"></p></span><br /></p>
+                    <p><br /></p>
+                    <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_result_pop();">
+                        <span class="pop_bt" style="font-size: 13pt;" >
+                            닫기
+                        </span>
+                    </div>
                 </div>
             </div>
     </body>
