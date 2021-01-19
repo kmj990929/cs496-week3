@@ -249,8 +249,12 @@
                 type: "GET",
                 success: function(data) {
                     document.getElementById("together_title").innerHTML = data["other"] + " 님과 함께 들을만한 노래"
-                    document.getElementById("together_content1").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 수 있을 거예요!"
-                    document.getElementById("together_content2").innerHTML = data["intersection"]
+                    if (data["intersection"].length == 0) {
+                        document.getElementById("together_content1").innerHTML = data["other"] + " 님과 함께 즐길만한 노래가 없어요(T.T )( T.T)"
+                    } else{
+                        document.getElementById("together_content1").innerHTML = data["user"] + " 님과 "+ data["other"] + " 님은 아래 Artist의 음악을 함께 즐길 수 있을 거예요!"
+                        document.getElementById("together_content2").innerHTML = data["intersection"]
+                    }
                     $('#resultModal').show();
                 },
                 error: function(data) {
