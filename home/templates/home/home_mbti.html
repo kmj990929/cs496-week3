@@ -130,7 +130,7 @@
                             </div>
                             <div class="col-3 col-12-small"> </div>
                             <div class="col-1 col-12-small">
-                                <button class="button fit icon fa-trash" id="del_artist" alt={{song.0.artist}}></button>
+                                <button class="button fit icon fa-trash del_artist" alt={{song.0.artist}}></button>
                             </div>
                         </div>
                         <hr />
@@ -270,8 +270,15 @@
                 }
             })
         };
-        $("#del_artist").click(function(){
-            $('#musicModal').show();
+        $(".del_artist").click(function(){
+            $.ajax({
+                url: "/home/delArtist",
+                data: {artist: $(this).attr("alt") },
+                type: "GET",
+                success: function(data) {
+                    location.reload();
+                }
+            })
         })
     </script>
 
