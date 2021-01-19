@@ -112,6 +112,16 @@
 
                         <hr />
 
+                        <h2>{{userName}} 님과 같은 성향의 사람들이 좋아하는 음악</h2>
+                        <div id = "persona_song_list" class="row">
+                            {% for mbti_song in same_mbti_songs%}
+                            <div id="song_item" class="col-2 col-12-small">
+                                <img class="clickable_thumbnail", id="clickable_thumbnail_0" src={{song_item.thumbnail}} alt={{song_item.url}} width="180" height="100" onClick="open_pop();"> </img>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <hr />
+
                         <h2>{{userName}} 님에게 추천하는 음악</h2>
                         {% for song in song_list%}
                         <p style="margin-top:20px;margin-bottom:3px;">{{song.0.artist}}</p>

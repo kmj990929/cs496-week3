@@ -25,7 +25,9 @@ def index(request):
             persona = settingPersona(user, True)
             song_list = settingSongList(persona.artist)
 
-            content = {'userName':userName, 'mbti': mbti, 'artist_list':persona.artist, 'song_list':song_list}
+            same_mbti_songs = sameMbtiSong(request)
+
+            content = {'userName':userName, 'mbti': mbti, 'artist_list':persona.artist, 'song_list':song_list, 'same_mbti_songs': same_mbti_songs}
             return render(request, 'home/home_mbti.html', content)
         except:
             if (user.mbti != ""):
@@ -42,7 +44,9 @@ def index(request):
                     artist = ast.literal_eval(artist)
                 song_list = settingSongList(artist)
 
-                content = {'userName':userName, 'mbti' : mbti, 'artist_list':artist, 'song_list': song_list}
+                same_mbti_songs = sameMbtiSong(request)
+
+                content = {'userName':userName, 'mbti' : mbti, 'artist_list':artist, 'song_list': song_list, 'same_mbti_songs': same_mbti_songs}
                 return render(request, 'home/home_mbti.html', content)
             else:
                 # 아직 mbti 결과가 없는 경우
@@ -196,3 +200,16 @@ def deleteArtist(request):
     content = {'success':True}
     return HttpResponse(json.dumps(content), content_type="application/json")
 
+def sameMbtiSong(request):
+    userName = request.session.get('userName')
+    userID = User.objects.filter(userName = userName)[0].userID
+    persona = Persona.objects.filter(userID = userID)[0]
+    mbti = persona.mbti
+    sameMbti = Persona.objects.filter(mbti = mbti)
+    same_mbti_songs = []
+    for person in sameMbti:
+        songList = person.songs
+        if (type(songList) == str) :
+            songList = ast.literal_eval(songList)
+        same_mbti_songs = same_mbti_songs + songList
+    return same_mbti_songs
