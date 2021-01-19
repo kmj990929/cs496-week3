@@ -170,12 +170,13 @@ def playlist(request):
     if (type(playlist) == str) :
         playlist = ast.literal_eval(playlist)
 
-    urlList = []
+    urlList = ""
     for title in playlist:
         url = Song.objects.filter(title=title)[0].url
         idx = url.index("embed/")
         token = url[idx+6:]
-        urlList.append(token)
+        urlList += token + ","
+    urlList = urlList[:-1]
     content = {'playlist':urlList}
     return render(request, 'home/playlist.html', content)
 
