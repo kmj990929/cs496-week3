@@ -101,7 +101,7 @@ def printResult(request):
     if userName:
         content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, "mbti_list": mbti_list, 'status' : "Logout"}
     else:
-        context = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, "mbti_list": mbti_list, 'status' : "Login"}
+        content = {'match_artist': artist, 'song_list' : song_all, 'profile_list' : profile_list, 'artist_list_string' : artist_list, "mbti_list": mbti_list, 'status' : "Login"}
 
     return render(request, 'mbti/result.html', content)
 
@@ -176,7 +176,7 @@ def getUrl(url):
     #display = Display(visible=0, size = (1920, 1080))
     #display.start()
     #driver = webdriver.Chrome('/home/ubuntu/cs496-week3/chromedriver', chrome_options=chrome_options)
-    driver = webdriver.Chrome('C:/Users/q/Desktop/chromedriver.exe', chrome_options=chrome_options)
+    driver = webdriver.Chrome('C:/Users/USER/Desktop/startup_crawling/chromedriver.exe', chrome_options=chrome_options)
     driver.get(url)
     return driver
 
